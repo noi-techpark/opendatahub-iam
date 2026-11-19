@@ -8,7 +8,8 @@ image:
 # Secret with keys databaseUrl, keycloakClientSecret, serviceKeyContent;
 # created outside the chart.
 secretName: odh-iam
-# Secret with key signing-key.pem; created outside the chart.
+# Secret whose keys are *.pem files, mounted as the signing key directory;
+# the file sorting last signs, so name them by date. Created outside the chart.
 signingKeySecretName: odh-iam-signing-key
 
 ingress:
@@ -25,6 +26,9 @@ env:
   IAM_UI_CLIENT_ID: odh-iam-ui
   IAM_CACHE_TTL: 15s
   IAM_JWT_TTL: 60s
+  SERVICE_NAME: odh-iam
+  LOG_LEVEL: INFO
+  TELEMETRY_TRACE_GRPC_ENDPOINT: tempo-distributor-discovery.monitoring.svc.cluster.local:4317
 
 # Rendered into the ConfigMap the service reads as IAM_CONFIG.
 config:

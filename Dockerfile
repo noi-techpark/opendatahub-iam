@@ -12,7 +12,7 @@ COPY --from=build /out/ /usr/local/bin/
 COPY config /etc/iam
 USER iam
 ENV IAM_CONFIG=/etc/iam/dev.json \
-    IAM_SIGNING_KEY_FILE=/data/signing-key.pem
+    IAM_SIGNING_KEYS_DIR=/data/keys
 VOLUME /data
 EXPOSE 4010 4011
 CMD ["iam"]

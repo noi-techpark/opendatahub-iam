@@ -104,7 +104,7 @@
     <div class="eyebrow">Open Data Hub · identity service</div>
     <h1>Who do the APIs trust, and where does the service sit</h1>
     <p class="lede">The identity service is the only issuer the APIs know, and the hook at the edge is the identity-aware proxy. Part one is the design and every kind of caller, inside and outside the cluster. Part two is how it lands on the existing infrastructure, what changes per repository, and the effort.</p>
-    <p><strong>State of the PoC.</strong> The repository implements the hook end to end, with an nginx <code>auth_request</code> dev edge, the service key in a header, and passing API and browser suites. The claim set below, the <code>client_credentials</code> token endpoint (<code>POST /v1/token</code>) and the pass-through of the service's own JWT at the hook are implemented and covered by the suites. Not built: key rotation, an operator view, rate limiting.</p>
+    <p><strong>State of the PoC.</strong> The repository implements the hook end to end, with an nginx <code>auth_request</code> dev edge, the service key in a header, and passing API and browser suites. The claim set below, the <code>client_credentials</code> token endpoint (<code>POST /v1/token</code>) and the pass-through of the service's own JWT at the hook are implemented and covered by the suites. Since 2026-11-19 the repository <code>noi-techpark/opendatahub-iam</code> also carries the production layer: JSON logs and OpenTelemetry through the Go SDK, a rate limit on the credential-relaying routes, a readiness probe, versioned migrations, signing key rotation through a key directory, and an operator view over tokens. Not yet: a load test of the Keycloak admin path, the helmfile and sops deployment.</p>
   </header>
 
   <section>

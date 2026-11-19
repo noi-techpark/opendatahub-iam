@@ -38,6 +38,7 @@ USERS = {
             "odh-mobility-v2": ["BDP_ADMIN"],
             "odh-api-core": ["DataWriter"],
             "realm-management": ["view-users"],
+            "odh-iam": ["iam-admin"],
         },
     },
     "bob": {"first": "Bob", "last": "Gasser", "roles": {}},
@@ -135,7 +136,10 @@ def main():
         "sslRequired": "none",
         "roles": {
             "realm": [],
-            "client": {cid: strip_ids(src["roles"]["client"].get(cid, [])) for cid in API_CLIENTS},
+            "client": {
+                **{cid: strip_ids(src["roles"]["client"].get(cid, [])) for cid in API_CLIENTS},
+                "odh-iam": [{"name": "iam-admin", "description": "May list and revoke any user's API tokens", "clientRole": True}],
+            },
         },
         "clients": clients,
         "users": users,

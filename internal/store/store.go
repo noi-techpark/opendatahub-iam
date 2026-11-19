@@ -2,9 +2,9 @@ package store
 
 import (
 	"context"
-	_ "embed"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/jackc/pgx/v5"
@@ -13,9 +13,6 @@ import (
 
 	"github.com/noi-techpark/opendatahub-iam/internal/grants"
 )
-
-//go:embed schema.sql
-var schema string
 
 var (
 	ErrNotFound  = errors.New("not found")
@@ -40,8 +37,30 @@ func (t Token) Expired(now time.Time) bool {
 	return t.ExpiresAt != nil && !now.Before(*t.ExpiresAt)
 }
 
-func Open(ctx context.Context, url string) (*Store, error) {
-	db, err := pgxpool.New(ctx, url)
+// Options bound the pool. Zero values keep pgx defaults.
+type Options struct {
+	MaxConns int32
+	// StatementTimeout is enforced by Postgres on every statement, so a
+	// stuck query cannot hold the hook path.
+	StatementTimeout time.Duration
+}
+
+// Open connects, applies pending migrations and returns the store.
+func Open(ctx context.Context, url string, opts Options) (*Store, error) {
+	cfg, err := pgxpool.ParseConfig(url)
+	if err != nil {
+		return nil, err
+	}
+	if opts.MaxConns > 0 {
+		cfg.MaxConns = opts.MaxConns
+	}
+	cfg.MaxConnIdleTime = 5 * time.Minute
+	cfg.HealthCheckPeriod = 30 * time.Second
+	cfg.ConnConfig.ConnectTimeout = 5 * time.Second
+	if opts.StatementTimeout > 0 {
+		cfg.ConnConfig.RuntimeParams["statement_timeout"] = fmt.Sprint(opts.StatementTimeout.Milliseconds())
+	}
+	db, err := pgxpool.NewWithConfig(ctx, cfg)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +68,7 @@ func Open(ctx context.Context, url string) (*Store, error) {
 		db.Close()
 		return nil, err
 	}
-	if _, err := db.Exec(ctx, schema); err != nil {
+	if err := migrate(ctx, db); err != nil {
 		db.Close()
 		return nil, err
 	}
@@ -190,4 +209,13 @@ func (s *Store) CountData(ctx context.Context, userID string) (int, error) {
 	var n int
 	err := s.db.QueryRow(ctx, `select count(*) from user_data where user_id = $1`, userID).Scan(&n)
 	return n, err
+}
+
+// RevokeAnyToken revokes a token whoever owns it and returns it, for the
+// audit trail of an operator action.
+func (s *Store) RevokeAnyToken(ctx context.Context, id string) (Token, error) {
+	return scanToken(s.db.QueryRow(ctx, `
+		update api_tokens set revoked_at = now()
+		where id = $1 and revoked_at is null
+		returning `+tokenColumns, id))
 }

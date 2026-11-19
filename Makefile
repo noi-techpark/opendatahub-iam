@@ -23,7 +23,7 @@ test:
 # Short caches, so the suite does not wait out the normal propagation delay.
 # The browser part needs Firefox.
 e2e: image
-	IAM_CACHE_TTL=1s $(COMPOSE) up -d --no-build --force-recreate iam demo-api edge
+	IAM_CACHE_TTL=1s IAM_RATE_LIMIT_PER_MINUTE=0 $(COMPOSE) up -d --no-build --force-recreate iam demo-api edge
 	go test -tags e2e -count=1 ./e2e/...
 	python3 e2e/ui_test.py
 

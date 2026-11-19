@@ -3,8 +3,12 @@ package keycloak
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"time"
 
 	"github.com/coreos/go-oidc/v3/oidc"
+
+	"github.com/noi-techpark/opendatahub-go-sdk/tel/stdhttp"
 )
 
 // Session is a verified Keycloak access token of an interactive user.
@@ -30,6 +34,7 @@ type Verifier struct {
 // tokens actually carry; the two differ when Keycloak is reached on an
 // internal address.
 func NewVerifier(ctx context.Context, baseURL, realm, issuer, audience string) *Verifier {
+	ctx = oidc.ClientContext(ctx, &http.Client{Timeout: 10 * time.Second, Transport: stdhttp.Transport(nil)})
 	keys := oidc.NewRemoteKeySet(ctx,
 		fmt.Sprintf("%s/realms/%s/protocol/openid-connect/certs", baseURL, realm))
 	return &Verifier{

@@ -46,7 +46,7 @@ type meView struct {
 
 func (s *Server) me(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
-	id, err := s.dir.identity(r.Context(), sess.Subject, false)
+	id, err := s.dir.Identity(r.Context(), sess.Subject, false)
 	if err != nil {
 		internalError(w, r, err)
 		return
@@ -95,7 +95,7 @@ func (s *Server) tokenView(t store.Token, held grants.Roles) tokenView {
 
 func (s *Server) listTokens(w http.ResponseWriter, r *http.Request) {
 	sess := sessionFrom(r)
-	id, err := s.dir.identity(r.Context(), sess.Subject, false)
+	id, err := s.dir.Identity(r.Context(), sess.Subject, false)
 	if err != nil {
 		internalError(w, r, err)
 		return
@@ -140,7 +140,7 @@ func (s *Server) createToken(w http.ResponseWriter, r *http.Request) {
 
 	// Validate against Keycloak directly: a role granted seconds ago must be
 	// selectable, and one just removed must not be.
-	id, err := s.dir.identity(r.Context(), sess.Subject, true)
+	id, err := s.dir.Identity(r.Context(), sess.Subject, true)
 	if err != nil {
 		internalError(w, r, err)
 		return

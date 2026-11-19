@@ -13,8 +13,11 @@ import (
 	"sync"
 	"time"
 
+	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 	"golang.org/x/sync/errgroup"
+
+	"github.com/noi-techpark/opendatahub-go-sdk/tel/stdhttp"
 )
 
 var ErrNotFound = errors.New("keycloak: not found")
@@ -42,7 +45,9 @@ func NewAdmin(baseURL, realm, clientID, clientSecret string) *Admin {
 		ClientSecret: clientSecret,
 		TokenURL:     fmt.Sprintf("%s/realms/%s/protocol/openid-connect/token", baseURL, realm),
 	}
-	client := cc.Client(context.Background())
+	// oauth2 takes the base client, and so the tracing transport, from the context.
+	ctx := context.WithValue(context.Background(), oauth2.HTTPClient, &http.Client{Transport: stdhttp.Transport(nil)})
+	client := cc.Client(ctx)
 	client.Timeout = 10 * time.Second
 	return &Admin{
 		base:  fmt.Sprintf("%s/admin/realms/%s", baseURL, realm),
@@ -81,6 +86,22 @@ func (a *Admin) User(ctx context.Context, id string) (User, error) {
 		return u, err
 	}
 	return u, json.Unmarshal(body, &u)
+}
+
+// UserByUsername finds a user by exact username.
+func (a *Admin) UserByUsername(ctx context.Context, username string) (User, error) {
+	body, err := a.get(ctx, "/users?exact=true&username="+url.QueryEscape(username))
+	if err != nil {
+		return User{}, err
+	}
+	var found []User
+	if err := json.Unmarshal(body, &found); err != nil {
+		return User{}, err
+	}
+	if len(found) != 1 {
+		return User{}, ErrNotFound
+	}
+	return found[0], nil
 }
 
 func (a *Admin) clientUUID(ctx context.Context, clientID string) (string, error) {

@@ -206,7 +206,21 @@ Machine clients, authenticated by Keycloak:
 |---|---|
 | `POST /v1/token` | `client_credentials` form grant → Bearer JWT for all services |
 
-Public: `/.well-known/openid-configuration`, `/.well-known/jwks.json`, `/healthz`.
+Operators, with a session whose Keycloak token carries `IAM_ADMIN_ROLE` on the
+service's own client:
+
+| | |
+|---|---|
+| `GET /v1/admin/users/{user}/tokens` | active tokens of a user, by Keycloak id or username |
+| `DELETE /v1/admin/tokens/{id}` | revoke anyone's token; logged with operator, token and owner |
+
+Public: `/.well-known/openid-configuration`, `/.well-known/jwks.json`,
+`/healthz` (liveness), `/readyz` (readiness: the database answers).
+
+The self-service, operator and `POST /v1/token` routes are limited to
+`IAM_RATE_LIMIT_PER_MINUTE` requests per client address per replica and
+answer 429 with `Retry-After` beyond that. The hook and the service-keyed
+routes are not limited.
 
 ## Configuration
 
@@ -221,17 +235,43 @@ Public: `/.well-known/openid-configuration`, `/.well-known/jwks.json`, `/healthz
 | `IAM_KEYCLOAK_CLIENT_ID` | `odh-iam` | service account used to read Keycloak |
 | `IAM_SESSION_AUDIENCE` | `odh-iam` | `aud` required on self-service calls |
 | `IAM_UI_CLIENT_ID` | `odh-iam-ui` | public client the console logs in with |
-| `IAM_SIGNING_KEY_FILE` | `data/signing-key.pem` | RSA key, created on first start |
+| `IAM_SIGNING_KEYS_DIR` | `data/keys` | directory of RSA `*.pem` keys; the one sorting last signs, all are published; one is generated on first start |
 | `IAM_CONFIG` | `config/dev.json` | API clients, inherited roles, services |
 | `IAM_CACHE_TTL` | `15s` | user and role cache |
 | `IAM_POLICY_TTL` | `60s` | UMA configuration cache |
 | `IAM_JWT_TTL` | `60s` | lifetime of hook JWTs |
 | `IAM_CLIENT_TOKEN_TTL` | `5m` | lifetime of client credentials JWTs |
+| `IAM_ADMIN_ROLE` | `iam-admin` | role on `IAM_KEYCLOAK_CLIENT_ID` that admits a session to the operator routes |
+| `IAM_RATE_LIMIT_PER_MINUTE` | `300` | per client address, on the routes that relay credentials or write; `0` disables |
+| `IAM_DB_MAX_CONNS` | `10` | connection pool size per replica |
+| `IAM_DB_STATEMENT_TIMEOUT` | `5s` | enforced by Postgres on every statement |
 
 `config/dev.json` names each resource server: its audience, the clients whose
 roles it sees, an optional flat role claim, and the UMA clients it needs
 evaluated. Service keys come from the environment variable named by `keyEnv`.
 Any service key can read any user data namespace by subject.
+
+### Logs, traces, metrics
+
+The service follows the Open Data Hub Go SDK (`opendatahub-go-sdk/tel`):
+logs are JSON on stdout, telemetry comes from the same `TELEMETRY_*`
+variables the collectors use.
+
+| Variable | Default | |
+|---|---|---|
+| `LOG_LEVEL` | `INFO` | `DEBUG` also shows the hook's successful answers |
+| `SERVICE_NAME` | `odh-iam` | resource name on spans and metrics |
+| `TELEMETRY_ENABLED` | `true` | `false` turns tracing and metrics off, as in `docker-compose.yml` |
+| `TELEMETRY_TRACE_GRPC_ENDPOINT` | `localhost:4317` | OTLP gRPC collector; the chart points it at Tempo |
+| `TELEMETRY_METRICS_ENABLED` | `false` | `request_duration_millis` and `requests_inflight` by route, method and status |
+
+Every call under `/v1/` and `/.well-known/` gets a server span named after
+its route, with the incoming `traceparent` honoured, and one access-log line
+(`msg=request`: method, path, route, status, `duration_ms`, client). Log
+lines written while handling a request carry `trace_id` and `span_id`. Calls
+to Keycloak are child spans and propagate the trace. A handler panic is
+logged with its stack and answered with a 500 JSON error. Nothing from the
+`Authorization` header or a token is ever logged.
 
 ### What Keycloak needs
 
@@ -244,12 +284,11 @@ Any service key can read any user data namespace by subject.
 ## Before production
 
 - **Signing key.** Whoever holds it can assert any identity to every API.
-  There is one key and no rotation.
+  To rotate it, add a key file whose name sorts later (an ISO date) to the
+  directory and deploy; after the longest JWT lifetime (`IAM_CLIENT_TOKEN_TTL`)
+  remove the old file and deploy again. Nothing signed in between fails.
 - **Password grant.** The dev realm enables it on the console client for the
   test suites. Keep it off elsewhere.
-- **No operator view.** Nobody but the owner can list or revoke a token.
-- **No rate limiting** on any endpoint. `POST /v1/token` relays every
-  credential guess to Keycloak unauthenticated.
 - **Role-based UMA only.** Adding a script, time, user or negative policy to a
   client listed under `uma` stops token access to that API until it is removed
   or support is added.

@@ -42,8 +42,11 @@ services:
       IAM_KEYCLOAK_REALM: noi
       IAM_KEYCLOAK_CLIENT_ID: odh-iam
       IAM_KEYCLOAK_CLIENT_SECRET: odh-iam-dev-secret
+      TELEMETRY_ENABLED: "false"
+      LOG_LEVEL: DEBUG
       IAM_DEMO_API_URL: http://localhost:4011
       IAM_CACHE_TTL: ${IAM_CACHE_TTL:-15s}
+      IAM_RATE_LIMIT_PER_MINUTE: ${IAM_RATE_LIMIT_PER_MINUTE:-300}
       IAM_JWT_TTL: ${IAM_JWT_TTL:-60s}
     ports:
       - "127.0.0.1:4010:4010"

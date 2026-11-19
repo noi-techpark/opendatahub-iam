@@ -6,7 +6,6 @@ import (
 	"io"
 	"net/http"
 	"strings"
-	"time"
 
 	"github.com/noi-techpark/opendatahub-iam/internal/keycloak"
 )
@@ -33,8 +32,7 @@ func (s *Server) clientToken(w http.ResponseWriter, r *http.Request) {
 	if auth := r.Header.Get("Authorization"); auth != "" {
 		req.Header.Set("Authorization", auth)
 	}
-	client := &http.Client{Timeout: 30 * time.Second}
-	resp, err := client.Do(req)
+	resp, err := s.http.Do(req)
 	if err != nil {
 		writeJSON(w, 503, map[string]string{"error": "temporarily_unavailable"})
 		return
@@ -58,7 +56,7 @@ func (s *Server) clientToken(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 502, map[string]string{"error": "server_error"})
 		return
 	}
-	user, err := s.dir.identity(r.Context(), sess.Subject, false)
+	user, err := s.dir.Identity(r.Context(), sess.Subject, false)
 	if errors.Is(err, keycloak.ErrNotFound) || (err == nil && !user.User.Enabled) {
 		writeJSON(w, 401, map[string]string{"error": "invalid_client"})
 		return

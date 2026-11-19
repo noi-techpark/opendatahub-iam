@@ -23,8 +23,8 @@ spec:
           env:
             - name: IAM_CONFIG
               value: /etc/iam/config.json
-            - name: IAM_SIGNING_KEY_FILE
-              value: /keys/signing-key.pem
+            - name: IAM_SIGNING_KEYS_DIR
+              value: /keys
             {{- range $k, $v := .Values.env }}
             - name: {{ $k }}
               value: {{ $v | quote }}
@@ -39,7 +39,7 @@ spec:
             - { name: config, mountPath: /etc/iam, readOnly: true }
             - { name: signing-key, mountPath: /keys, readOnly: true }
           readinessProbe:
-            httpGet: { path: /healthz, port: http }
+            httpGet: { path: /readyz, port: http }
             periodSeconds: 5
           livenessProbe:
             httpGet: { path: /healthz, port: http }

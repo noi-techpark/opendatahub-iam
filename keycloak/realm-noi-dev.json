@@ -1170,6 +1170,13 @@
           "clientRole": true,
           "attributes": {}
         }
+      ],
+      "odh-iam": [
+        {
+          "name": "iam-admin",
+          "description": "May list and revoke any user's API tokens",
+          "clientRole": true
+        }
       ]
     }
   },
@@ -4677,6 +4684,9 @@
         ],
         "realm-management": [
           "view-users"
+        ],
+        "odh-iam": [
+          "iam-admin"
         ]
       }
     },

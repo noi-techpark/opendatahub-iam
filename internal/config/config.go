@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -53,14 +54,23 @@ type Config struct {
 	KeycloakClientSecret string
 
 	SessionAudience string
-	UIClientID      string
-	SigningKeyFile  string
-	DemoAPIURL      string
+	// Role on KeycloakClientID that admits a session to the operator routes.
+	AdminRole  string
+	UIClientID string
+	// Directory of *.pem keys; the one sorting last signs, all are published.
+	SigningKeysDir string
+	DemoAPIURL     string
 
 	CacheTTL       time.Duration
 	PolicyTTL      time.Duration
 	JWTTTL         time.Duration
 	ClientTokenTTL time.Duration
+
+	// Requests per minute one client address may send to the token endpoint
+	// and the self-service routes; 0 disables the limit.
+	RateLimitPerMinute int
+	DBMaxConns         int
+	DBStatementTimeout time.Duration
 
 	Policy
 }
@@ -70,6 +80,18 @@ func env(key, fallback string) string {
 		return v
 	}
 	return fallback
+}
+
+func integer(key string, fallback int) (int, error) {
+	v := os.Getenv(key)
+	if v == "" {
+		return fallback, nil
+	}
+	n, err := strconv.Atoi(v)
+	if err != nil {
+		return 0, fmt.Errorf("%s: %w", key, err)
+	}
+	return n, nil
 }
 
 func duration(key string, fallback time.Duration) (time.Duration, error) {
@@ -94,8 +116,9 @@ func Load() (Config, error) {
 		KeycloakClientID:     env("IAM_KEYCLOAK_CLIENT_ID", "odh-iam"),
 		KeycloakClientSecret: os.Getenv("IAM_KEYCLOAK_CLIENT_SECRET"),
 		SessionAudience:      env("IAM_SESSION_AUDIENCE", "odh-iam"),
+		AdminRole:            env("IAM_ADMIN_ROLE", "iam-admin"),
 		UIClientID:           env("IAM_UI_CLIENT_ID", "odh-iam-ui"),
-		SigningKeyFile:       env("IAM_SIGNING_KEY_FILE", "data/signing-key.pem"),
+		SigningKeysDir:       env("IAM_SIGNING_KEYS_DIR", "data/keys"),
 		DemoAPIURL:           strings.TrimRight(os.Getenv("IAM_DEMO_API_URL"), "/"),
 	}
 	c.KeycloakIssuer = strings.TrimRight(
@@ -112,6 +135,15 @@ func Load() (Config, error) {
 		return c, err
 	}
 	if c.ClientTokenTTL, err = duration("IAM_CLIENT_TOKEN_TTL", 5*time.Minute); err != nil {
+		return c, err
+	}
+	if c.RateLimitPerMinute, err = integer("IAM_RATE_LIMIT_PER_MINUTE", 300); err != nil {
+		return c, err
+	}
+	if c.DBMaxConns, err = integer("IAM_DB_MAX_CONNS", 10); err != nil {
+		return c, err
+	}
+	if c.DBStatementTimeout, err = duration("IAM_DB_STATEMENT_TIMEOUT", 5*time.Second); err != nil {
 		return c, err
 	}
 	if c.DatabaseURL == "" {

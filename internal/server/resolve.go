@@ -1,15 +1,16 @@
 package server
 
 import (
+	"crypto/subtle"
 	"encoding/json"
 	"errors"
 	"io"
-	"log/slog"
 	"net/http"
 	"slices"
 	"strings"
 	"time"
 
+	"github.com/noi-techpark/opendatahub-go-sdk/tel/logger"
 	"github.com/noi-techpark/opendatahub-iam/internal/config"
 	"github.com/noi-techpark/opendatahub-iam/internal/grants"
 	"github.com/noi-techpark/opendatahub-iam/internal/keycloak"
@@ -80,7 +81,7 @@ func (s *Server) resolve(w http.ResponseWriter, r *http.Request) {
 // should also be limited to the ingress by network policy.
 func (s *Server) forwardAuth(w http.ResponseWriter, r *http.Request) {
 	svc := s.serviceNamed(r.PathValue("service"))
-	if svc == nil || r.Header.Get("X-Service-Key") != svc.Key {
+	if svc == nil || subtle.ConstantTimeCompare([]byte(r.Header.Get("X-Service-Key")), []byte(svc.Key)) != 1 {
 		writeError(w, http.StatusUnauthorized, "invalid_service_key", "Unknown service or key.")
 		return
 	}
@@ -119,7 +120,7 @@ func (s *Server) serviceNamed(name string) *config.Service {
 func (s *Server) writeResolveError(w http.ResponseWriter, r *http.Request, err error) {
 	var unavailable *errUnavailable
 	if errors.As(err, &unavailable) {
-		slog.Error(unavailable.code, "err", unavailable.err)
+		logger.Get(r.Context()).Error(unavailable.code, "err", unavailable.err)
 		writeError(w, http.StatusServiceUnavailable, unavailable.code, unavailable.message)
 		return
 	}
@@ -156,7 +157,7 @@ func (s *Server) resolveAPIToken(r *http.Request, svc *config.Service, raw strin
 		return resolution{Reason: "expired"}, nil
 	}
 
-	owner, err := s.dir.identity(ctx, t.UserID, false)
+	owner, err := s.dir.Identity(ctx, t.UserID, false)
 	if errors.Is(err, keycloak.ErrNotFound) || (err == nil && !owner.User.Enabled) {
 		return resolution{Reason: "owner_disabled"}, nil
 	}
@@ -173,7 +174,7 @@ func (s *Server) resolveAPIToken(r *http.Request, svc *config.Service, raw strin
 		return resolution{}, err
 	}
 	if err := s.store.TouchToken(ctx, t.ID); err != nil {
-		slog.Warn("could not record token use", "token", t.ID, "err", err)
+		logger.Get(ctx).Warn("could not record token use", "token", t.ID, "err", err)
 	}
 	return out, nil
 }
@@ -190,7 +191,7 @@ func (s *Server) resolveSession(r *http.Request, svc *config.Service, raw string
 	if err := s.store.UpsertUser(ctx, sess.Subject, sess.Username, sess.Email); err != nil {
 		return resolution{}, err
 	}
-	user, err := s.dir.identity(ctx, sess.Subject, false)
+	user, err := s.dir.Identity(ctx, sess.Subject, false)
 	if errors.Is(err, keycloak.ErrNotFound) || (err == nil && !user.User.Enabled) {
 		return resolution{Reason: "user_disabled"}, nil
 	}
@@ -237,7 +238,7 @@ func (s *Server) issueServices(r *http.Request, services []config.Service, p *pr
 				return slices.Contains(carried[client], role)
 			}
 			for _, client := range svc.UMA {
-				evaluator, err := s.dir.evaluator(ctx, client)
+				evaluator, err := s.dir.Evaluator(ctx, client)
 				if err != nil {
 					// Fail closed: an unreadable or unsupported policy set must
 					// not degrade into "no permissions" that looks deliberate.

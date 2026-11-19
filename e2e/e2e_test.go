@@ -866,3 +866,43 @@ func TestClientCredentialsTokenEndpoint(t *testing.T) {
 		t.Fatalf("unsupported grant: %d %+v", resp.StatusCode, failure)
 	}
 }
+
+func TestOperatorCanListAndRevokeAnyToken(t *testing.T) {
+	anna, walter := login(t, "anna"), login(t, "walter")
+	tok := createToken(t, anna, "op", map[string][]string{mobility: {"*"}})
+
+	t.Run("a plain user is refused", func(t *testing.T) {
+		if r := wantStatus(t, call(t, "GET", iamURL+"/v1/admin/users/anna/tokens", anna, nil), 403); r.errorCode() != "operator_required" {
+			t.Fatalf("code %q", r.errorCode())
+		}
+	})
+
+	t.Run("by username", func(t *testing.T) {
+		var out struct {
+			User   struct{ Username string } `json:"user"`
+			Tokens []struct {
+				ID string `json:"id"`
+			} `json:"tokens"`
+		}
+		wantStatus(t, call(t, "GET", iamURL+"/v1/admin/users/anna/tokens", walter, nil), 200).decode(t, &out)
+		listed := false
+		for _, item := range out.Tokens {
+			listed = listed || item.ID == tok.ID
+		}
+		if out.User.Username != "anna" || !listed {
+			t.Fatalf("%+v", out)
+		}
+	})
+
+	t.Run("unknown user", func(t *testing.T) {
+		wantStatus(t, call(t, "GET", iamURL+"/v1/admin/users/nobody/tokens", walter, nil), 404)
+	})
+
+	t.Run("revoke", func(t *testing.T) {
+		wantStatus(t, call(t, "DELETE", iamURL+"/v1/admin/tokens/"+tok.ID, walter, nil), 204)
+		wantStatus(t, call(t, "DELETE", iamURL+"/v1/admin/tokens/"+tok.ID, walter, nil), 404)
+		if res := resolve(t, timeseriesKey, tok.Secret); res.Active || res.Reason != "revoked" {
+			t.Fatalf("after operator revocation: %+v", res)
+		}
+	})
+}
