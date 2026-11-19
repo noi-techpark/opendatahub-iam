@@ -1,0 +1,4700 @@
+{
+  "realm": "noi",
+  "enabled": true,
+  "sslRequired": "none",
+  "roles": {
+    "realm": [],
+    "client": {
+      "odh-api-core": [
+        {
+          "name": "ArticleCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MeasuringPointDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SkiAreaCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SkiAreaManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ActivityWriter",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ArticleUpdate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "VenueDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "Discoverswiss_Writer",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "RegionIDMManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODHActivityPoiModify",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ArticleModify",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MetaDataCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "RegionCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SkiAreaDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TourismAssociationCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "RegionManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccommodationCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MunicipalityIDMManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccommodationUpdate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TourismAssociationUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ReteAlFemminileManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "StudioPinkManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DataDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MetaDataDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TourismAssociationIDMManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MeasuringPointUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventUpdate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODH_ROLE_ADVANCED",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortModify",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TripUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccoDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "VenueManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DataCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventNOIManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccommodationModify",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventCentroTreviOnly",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "IDMMarketplacePush",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DataWriter",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DataModify",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "PublisherCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "PublisherDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "PushMessageWriter",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortNoiOnly",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortEuracManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SourceDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ArticleDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DataVisible",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DistrictDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODHActivityPoiSuedtirolWeinWriter",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "WebcamInfoUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SourceUpdate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ActivityReader",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODH_ROLE_BASIC",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "VenueModify",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AlpineBitsReader",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AllImages",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DataPush",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SourceCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TripManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MeasuringPointCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODHActivityPoiWriter",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TripCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TourismAssociationDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "WebcamInfoPanocloudWriter",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODH_ROLE_ADMIN",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MetaDataUpdate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventUnibzManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "WnetManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TourismAssociationManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ArticleNOIManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventPEERManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODHActivityPoiUpdate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DSSCreateUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "VenueUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODHActivityPoiManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AnnouncementManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "STAPoiImport",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MunicipalityCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "UrbanGreenCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccoReader",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventNobisManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortNobisManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortUpdate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "UrbanGreenManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "PublisherUpdate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MunicipalityDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DistrictUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortEuracOnly",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SkiRegionCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortNobisOnly",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortUnibzManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SourceManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "WebcamInfoDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "A22",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "UrbanGreenModify",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DistrictIDMManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccoManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DistrictManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "IndependentManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccoModify",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AnnouncementCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventsCENTROTREVIManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODH_ROLE_PREMIUM",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccommodationDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODHActivityPoiDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "WebcamInfoPanomaxWriter",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AnnouncementUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "UrbanGreenDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "WebcamInfoCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccommodationWriter",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MunicipalityManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODHActivityPoiSiagWriter",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccommodationManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SkiRegionUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "IDM",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "RegionUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortDelete",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "WebcamInfoFeratelWriter",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SkiAreaUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "UrbanGreenWriter",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "VenueCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AnnouncementDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DistrictCreate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "VirtualVillageManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventsDRINManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AccoCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SkiRegionDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AlpineBitsWriter",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventMomentusManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "SkiRegionManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TripDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "RegionDelete",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "DataReader",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "AnnouncementModify",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortNOIManager",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "MunicipalityUpdate",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "NOICommunityAppPush",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "TripModify",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventEuracManager",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "EventShortVisible",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODHActivityPoiCreate",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "STA",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        }
+      ],
+      "odh-mobility-v2": [
+        {
+          "name": "BDP_ADMIN",
+          "description": "Administrator that sees all data. Also inherits ODH_ROLE_ADMIN for quota",
+          "composite": true,
+          "composites": {
+            "client": {
+              "odh-mobility-v2": [
+                "ODH_ROLE_ADMIN"
+              ]
+            }
+          },
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "BDP_A22",
+          "description": "All A22 data",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "BDP_MAD",
+          "description": "Mobility Analytics Developers",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODH_ROLE_ADMIN",
+          "description": "Open Data Hub Pricing Policy: Administrator = no restrictions at all (only used internally)",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODH_ROLE_ADVANCED",
+          "description": "Open Data Hub Pricing Policy: Advanced",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODH_ROLE_BASIC",
+          "description": "Open Data Hub Pricing Policy: Basic\n\n (if logged in and roles are missing, this is the DEFAULT)",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "BDP_A22_TRAFFICDATA",
+          "description": "A22 traffic data",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "ODH_ROLE_PREMIUM",
+          "description": "Open Data Hub Pricing Policy: Premium",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "BDP_BLC",
+          "description": "BrennerLEC community",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "BDP_EURAC",
+          "description": "EURAC Research",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "BDP_CBZ",
+          "description": "Comune di Bolzano",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "BDP_A22_ROADWEATHER",
+          "description": "A22 road weather data",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        }
+      ],
+      "odh-tourism-api": [
+        {
+          "name": "uma_protection",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        }
+      ],
+      "opendatahub-parking-control-tower": [
+        {
+          "name": "origin:SBB",
+          "description": "Grants the SBB origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:A22",
+          "description": "Grants the A22 origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:FBK",
+          "description": "Grants the FBK origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:FAMAS",
+          "description": "Grants the FAMAS origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:Municipality Merano",
+          "description": "Grants the Municipality Merano origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:skidata",
+          "description": "Grants the skidata origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:BVG",
+          "description": "Grants the BVG origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:STA",
+          "description": "Grants the STA origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "operator",
+          "description": "May enrich, within the origins granted by origin: roles",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:Municipality Bolzano",
+          "description": "Grants the Municipality Bolzano origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:skidata_dynamicdata",
+          "description": "Grants the skidata_dynamicdata origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:GARDENA",
+          "description": "Grants the GARDENA origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "admin",
+          "description": "May enrich every origin and perform administrative operations",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:Legocity",
+          "description": "Grants the Legocity origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        },
+        {
+          "name": "origin:Swarco",
+          "description": "Grants the Swarco origin",
+          "composite": false,
+          "clientRole": true,
+          "attributes": {}
+        }
+      ]
+    }
+  },
+  "clients": [
+    {
+      "clientId": "odh-api-core",
+      "name": "",
+      "description": "",
+      "enabled": true,
+      "publicClient": false,
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": false,
+      "protocol": "openid-connect",
+      "protocolMappers": [
+        {
+          "name": "User Client Role",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-client-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "role",
+            "jsonType.label": "String",
+            "usermodel.clientRoleMapping.clientId": "odh-api-core"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "profile",
+        "roles",
+        "basic",
+        "email"
+      ],
+      "secret": "odh-api-core-dev-secret",
+      "redirectUris": []
+    },
+    {
+      "clientId": "odh-mobility-v2",
+      "enabled": true,
+      "publicClient": false,
+      "bearerOnly": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": true,
+      "protocol": "openid-connect",
+      "defaultClientScopes": [
+        "web-origins",
+        "profile",
+        "roles",
+        "email"
+      ],
+      "protocolMappers": [],
+      "redirectUris": []
+    },
+    {
+      "clientId": "odh-tourism-api",
+      "name": "odh-tourism-api",
+      "description": "Client to retrieve ODH Tourism Data",
+      "enabled": true,
+      "publicClient": false,
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": true,
+      "fullScopeAllowed": true,
+      "protocol": "openid-connect",
+      "protocolMappers": [
+        {
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientId",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientId",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "basic",
+        "email"
+      ],
+      "authorizationSettings": {
+        "allowRemoteResourceManagement": false,
+        "policyEnforcementMode": "ENFORCING",
+        "resources": [
+          {
+            "name": "EventShort?source=eurac",
+            "type": "urn:odh-tourism-api:resources:eventshort",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/EventShort?source=eurac"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "EventShort",
+            "type": "urn:odh-tourism-api:resources:eventshort",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/EventShort"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Accommodation",
+            "type": "urn:odh-tourism-api:resources:accommodation",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Accommodation"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "attributes": {
+              "testattribute": [
+                "testvalue"
+              ]
+            },
+            "uris": [
+              "/Event"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Venue"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Article",
+            "type": "urn:odh-tourism-api:resources:article",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Article"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Article?source=noi",
+            "type": "urn:odh-tourism-api:resources:article",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Article?source=noi"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Accommodation?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:accommodation",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Accommodation?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Event?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "MetaData",
+            "type": "urn:odh-tourism-api:resources:metadata",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/MetaData"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Publisher",
+            "type": "urn:odh-tourism-api:resources:publisher",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Publisher"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "WebcamInfo?accessrole=A22",
+            "type": "urn:odh-tourism-api:resources:webcam",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/WebcamInfo?accessrole=A22"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Venue?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "WebcamInfo",
+            "type": "urn:odh-tourism-api:resources:webcam",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/WebcamInfo"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "WebcamInfo?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:webcam",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/WebcamInfo?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Activity?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:activity",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Activity?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Poi?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:poi",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Poi?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Gastronomy?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:gastronomy",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Gastronomy?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "MetaRegion",
+            "type": "urn:odh-tourism-api:resources:metaregion",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/MetaRegion"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?accessrole=A22",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?accessrole=A22"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Region",
+            "type": "urn:odh-tourism-api:resources:region",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Region"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "TourismAssociation",
+            "type": "urn:odh-tourism-api:resources:tourismassociation",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/TourismAssociation"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Municipality",
+            "type": "urn:odh-tourism-api:resources:municipality",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Municipality"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "District",
+            "type": "urn:odh-tourism-api:resources:district",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/District"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "SkiArea",
+            "type": "urn:odh-tourism-api:resources:skiarea",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/SkiArea"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "SkiRegion",
+            "type": "urn:odh-tourism-api:resources:skiregion",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/SkiRegion"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "WineAward",
+            "type": "urn:odh-tourism-api:resources:wineaward",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/WineAward"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Weather/Measuringpoint",
+            "type": "urn:odh-tourism-api:resources:measuringpoint",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Weather/Measuringpoint"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Weather/Measuringpoint?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:measuringpoint",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Weather/Measuringpoint?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "EventShort?source=nobis",
+            "type": "urn:odh-tourism-api:resources:eventshort",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/EventShort?source=nobis"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHTag",
+            "type": "urn:odh-tourism-api:resources:odhtag",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/ODHTag"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Tag",
+            "type": "urn:odh-tourism-api:resources:tag",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Tag"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Source",
+            "type": "urn:odh-tourism-api:resources:source",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Source"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=lts",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Events with Source lts Create Delete Update",
+            "attributes": {},
+            "uris": [
+              "/Event?source=lts"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "EventShort?source=noi",
+            "type": "urn:odh-tourism-api:resources:eventshort",
+            "ownerManagedAccess": false,
+            "displayName": "EventShort?source=noi",
+            "attributes": {},
+            "uris": [
+              "/EventShort?source=noi"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?source=alperia&source=driwe&source=iit&source=echargingspreadsheet&source=route220&source=driwe-ocpi&source=neogy",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?source=alperia&source=driwe&source=iit&source=echargingspreadsheet&source=route220&source=driwe-ocpi&source=neogy"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "AccommodationRoom?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:accommodationroom",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/AccommodationRoom?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Activity",
+            "type": "urn:odh-tourism-api:resources:activity",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Activity"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "AccommodationRoom",
+            "type": "urn:odh-tourism-api:resources:accommodationroom",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/AccommodationRoom"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Area",
+            "type": "urn:odh-tourism-api:resources:area",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Area"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Poi",
+            "type": "urn:odh-tourism-api:resources:poi",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Poi"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Gastronomy",
+            "type": "urn:odh-tourism-api:resources:gastronomy",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Gastronomy"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "EventShort?source=unibz",
+            "type": "urn:odh-tourism-api:resources:eventshort",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/EventShort?source=unibz"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Area?accessrole=IDM",
+            "type": "urn:odh-tourism-api:resources:area",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/Area?accessrole=IDM"
+            ],
+            "scopes": [
+              {
+                "name": "Read"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Example",
+            "type": "urn:odh-tourism-api:resources:example",
+            "ownerManagedAccess": false,
+            "displayName": "Example",
+            "attributes": {},
+            "uris": [
+              "/Example"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "OpenDataHubContent",
+            "type": "urn:odh-tourism-api:resources:",
+            "ownerManagedAccess": false,
+            "displayName": "OpenDataHubContent",
+            "attributes": {},
+            "uris": [
+              "/OpenDataHubContent"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "RoadIncident",
+            "type": "urn:odh-tourism-api:resources:roadincident",
+            "ownerManagedAccess": false,
+            "displayName": "RoadIncident",
+            "attributes": {},
+            "uris": [
+              "/RoadIncident"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Announcement",
+            "type": "urn:odh-tourism-api:resources:announcement",
+            "ownerManagedAccess": false,
+            "displayName": "Announcement",
+            "attributes": {},
+            "uris": [
+              "/Announcement"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "SkiRegion?source=discoverswiss",
+            "type": "urn:odh-tourism-api:resources:skiregion",
+            "ownerManagedAccess": false,
+            "displayName": "SkiRegion?source=discoverswiss",
+            "attributes": {},
+            "uris": [
+              "/SkiRegion?source=discoverswiss"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "UrbanGreen",
+            "type": "urn:odh-tourism-api:resources:urbangreen",
+            "ownerManagedAccess": false,
+            "displayName": "UrbanGreen",
+            "attributes": {},
+            "uris": [
+              "/UrbanGreen"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Weather/Measuringpoint?source=discoverswiss",
+            "type": "urn:odh-tourism-api:resources:measuringpoint",
+            "ownerManagedAccess": false,
+            "displayName": "Weather/Measuringpoint?source=discoverswiss",
+            "attributes": {},
+            "uris": [
+              "/Weather/Measuringpoint?source=discoverswiss"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?source=discoverswiss",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "displayName": "ODHActivityPoi?source=discoverswiss",
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?source=discoverswiss"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "SkiArea?source=discoverswiss",
+            "type": "urn:odh-tourism-api:resources:skiarea",
+            "ownerManagedAccess": false,
+            "displayName": "SkiArea?source=discoverswiss",
+            "attributes": {},
+            "uris": [
+              "/SkiArea?source=discoverswiss"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Trip",
+            "ownerManagedAccess": false,
+            "displayName": "Trip",
+            "attributes": {},
+            "uris": [
+              "/Trip"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Announcement?accessrole=A22",
+            "type": "urn:odh-tourism-api:resources:announcement",
+            "ownerManagedAccess": false,
+            "displayName": "Announcement?accessrole=A22",
+            "attributes": {},
+            "uris": [
+              "/Announcement?accessrole=A22"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Read"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?source=siag",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "displayName": "ODHActivityPoi?source=siag",
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?source=siag"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?source=suedtirolwein",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "displayName": "ODHActivityPoi?source=suedtirolwein",
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?source=suedtirolwein"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=drin",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Events with Source drin Create Delete Update",
+            "attributes": {},
+            "uris": [
+              "/Event?source=drin"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=eurac",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Event?source=eurac",
+            "attributes": {},
+            "uris": [
+              "/Event?source=eurac"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=nobis",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Event?source=nobis",
+            "attributes": {},
+            "uris": [
+              "/Event?source=nobis"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=trevilab",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Events with Source trevilab Create Delete Update",
+            "attributes": {},
+            "uris": [
+              "/Event?source=trevilab"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=noi",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Event?source=noi",
+            "attributes": {},
+            "uris": [
+              "/Event?source=noi"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=unibz",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Event?source=unibz",
+            "attributes": {},
+            "uris": [
+              "/Event?source=unibz"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Tag?source=siag",
+            "type": "urn:odh-tourism-api:resources:tag",
+            "ownerManagedAccess": false,
+            "displayName": "Tag?source=siag",
+            "attributes": {},
+            "uris": [
+              "/Tag?source=siag"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue?source=nobis",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "displayName": "Venue?source=nobis",
+            "attributes": {},
+            "uris": [
+              "/Venue?source=nobis"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue?source=eurac",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "displayName": "Venue?source=eurac",
+            "attributes": {},
+            "uris": [
+              "/Venue?source=eurac"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue?source=noi",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "displayName": "Venue?source=noi",
+            "attributes": {},
+            "uris": [
+              "/Venue?source=noi"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=peer",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Event?source=peer",
+            "attributes": {},
+            "uris": [
+              "/Event?source=peer"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Municipality?source=idm",
+            "type": "urn:odh-tourism-api:resources:municipality",
+            "ownerManagedAccess": false,
+            "displayName": "Municipality?source=idm",
+            "attributes": {},
+            "uris": [
+              "/Municipality?source=idm"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "TourismAssociation?source=idm",
+            "type": "urn:odh-tourism-api:resources:tourismassociation",
+            "ownerManagedAccess": false,
+            "displayName": "TourismAssociation?source=idm",
+            "attributes": {},
+            "uris": [
+              "/TourismAssociation?source=idm"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Region?source=idm",
+            "type": "urn:odh-tourism-api:resources:region",
+            "ownerManagedAccess": false,
+            "displayName": "Region?source=idm",
+            "attributes": {},
+            "uris": [
+              "/Region?source=idm"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "District?source=idm",
+            "type": "urn:odh-tourism-api:resources:district",
+            "ownerManagedAccess": false,
+            "displayName": "District?source=idm",
+            "attributes": {},
+            "uris": [
+              "/District?source=idm"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "SkiArea?source=dss",
+            "type": "urn:odh-tourism-api:resources:skiarea",
+            "ownerManagedAccess": false,
+            "displayName": "SkiArea?source=dss",
+            "attributes": {},
+            "uris": [
+              "/SkiArea?source=dss"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "SkiArea?source=idm",
+            "type": "urn:odh-tourism-api:resources:skiarea",
+            "ownerManagedAccess": false,
+            "displayName": "SkiArea?source=idm",
+            "attributes": {},
+            "uris": [
+              "/SkiArea?source=idm"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "WebcamInfo?source=dss",
+            "type": "urn:odh-tourism-api:resources:webcam",
+            "ownerManagedAccess": false,
+            "displayName": "WebcamInfo?source=dss",
+            "attributes": {},
+            "uris": [
+              "/WebcamInfo?source=dss"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?source=dss",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "displayName": "ODHActivityPoi?source=dss",
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?source=dss"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "WebcamInfo?source=panomax",
+            "type": "urn:odh-tourism-api:resources:webcam",
+            "ownerManagedAccess": false,
+            "displayName": "WebcamInfo?source=panomax",
+            "attributes": {},
+            "uris": [
+              "/WebcamInfo?source=panomax"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "WebcamInfo?source=panocloud",
+            "type": "urn:odh-tourism-api:resources:webcam",
+            "ownerManagedAccess": false,
+            "displayName": "WebcamInfo?source=panocloud",
+            "attributes": {},
+            "uris": [
+              "/WebcamInfo?source=panocloud"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "WebcamInfo?source=feratel",
+            "type": "urn:odh-tourism-api:resources:webcam",
+            "ownerManagedAccess": false,
+            "displayName": "WebcamInfo?source=feratel",
+            "attributes": {},
+            "uris": [
+              "/WebcamInfo?source=feratel"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=momentus",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Event?source=momentus",
+            "attributes": {},
+            "uris": [
+              "/Event?source=momentus"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=retealfemminile",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Event?source=retealfemminile",
+            "attributes": {},
+            "uris": [
+              "/Event?source=retealfemminile"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?source=retealfemminile",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "displayName": "ODHActivityPoi?source=retealfemminile",
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?source=retealfemminile"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=studiopink",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Event?source=studiopink",
+            "attributes": {},
+            "uris": [
+              "/Event?source=studiopink"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?source=studiopink",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "displayName": "ODHActivityPoi?source=studiopink",
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?source=studiopink"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Event?source=wnet",
+            "type": "urn:odh-tourism-api:resources:event",
+            "ownerManagedAccess": false,
+            "displayName": "Event?source=wnet",
+            "attributes": {},
+            "uris": [
+              "/Event?source=wnet"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "ODHActivityPoi?source=wnet",
+            "type": "urn:odh-tourism-api:resources:odhactivitypoi",
+            "ownerManagedAccess": false,
+            "displayName": "ODHActivityPoi?source=wnet",
+            "attributes": {},
+            "uris": [
+              "/ODHActivityPoi?source=wnet"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue?source=studiopink",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "displayName": "Venue?source=studiopink",
+            "attributes": {},
+            "uris": [
+              "/Venue?source=studiopink"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue?source=retealfemminile",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "displayName": "Venue?source=retealfemminile",
+            "attributes": {},
+            "uris": [
+              "/Venue?source=retealfemminile"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue?source=wnet",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "displayName": "Venue?source=wnet",
+            "attributes": {},
+            "uris": [
+              "/Venue?source=wnet"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue?source=trevilab",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "displayName": "Venue?source=trevilab",
+            "attributes": {},
+            "uris": [
+              "/Venue?source=trevilab"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          },
+          {
+            "name": "Venue?source=drin",
+            "type": "urn:odh-tourism-api:resources:venue",
+            "ownerManagedAccess": false,
+            "displayName": "Venue?source=drin",
+            "attributes": {},
+            "uris": [
+              "/Venue?source=drin"
+            ],
+            "scopes": [
+              {
+                "name": "Delete"
+              },
+              {
+                "name": "Create"
+              },
+              {
+                "name": "Update"
+              }
+            ],
+            "icon_uri": ""
+          }
+        ],
+        "policies": [
+          {
+            "name": "Echarging Independent Manager",
+            "description": "Echarging Independent Manager Role",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/IndependentManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "EventShort Source UNIBZ",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventShortUnibzManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Event Source CENTROTREVI Manager",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventsCENTROTREVIManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "EventShort Source Eurac",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventShortEuracOnly\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "EventShort Source Noi",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventShortNoiOnly\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "IDM Role",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/IDM\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "STA Role",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/STA\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "A22 Role",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/A22\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "EventShort Source Nobis",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventShortNobisOnly\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Event Source DRIN Manager",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventsDRINManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Article NOI",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/ArticleNOIManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "MetaData Writer",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/MetaDataUpdate\",\"required\":false},{\"id\":\"odh-api-core/MetaDataCreate\",\"required\":false},{\"id\":\"odh-api-core/MetaDataDelete\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Source Writer",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/SourceUpdate\",\"required\":false},{\"id\":\"odh-api-core/SourceCreate\",\"required\":false},{\"id\":\"odh-api-core/SourceDelete\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "DataWriter",
+            "description": "DataWriter Policy",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/DataWriter\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Publisher Writer",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/PublisherDelete\",\"required\":false},{\"id\":\"odh-api-core/PublisherCreate\",\"required\":false},{\"id\":\"odh-api-core/PublisherUpdate\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "DiscoverSwiss Skidata Writer",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/Discoverswiss_Writer\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "ODHActivityPoiSiag Writer",
+            "description": "Writing Data to ODHActivityPoi with Source Siag",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "fetchRoles": "false",
+              "roles": "[{\"id\":\"odh-api-core/ODHActivityPoiSiagWriter\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Event Source EURAC",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventEuracManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Event Source NOBIS",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventNobisManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Event Source NOI",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventNOIManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Event Source UNIBZ",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventUnibzManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "ODHActivityPoiSuedtirolWein Writer",
+            "description": "Writing Data to ODHActivityPoi with Source SuedtirolWein",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/ODHActivityPoiSuedtirolWeinWriter\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Event Source PEER",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/EventPEERManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Municipality Source IDM Update Create Delete",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/MunicipalityIDMManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "District Source IDM Update Create Delete",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/DistrictIDMManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Region Source IDM Update Create Delete",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/RegionIDMManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Tourismassociation Source IDM Update Create Delete",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/TourismAssociationIDMManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "WebcamInfo Source Panocloud",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/WebcamInfoPanocloudWriter\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "WebcamInfo Source Panomax",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/WebcamInfoPanomaxWriter\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "WebcamInfo Source Feratel",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/WebcamInfoFeratelWriter\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "Event Source Momentus Create Update Delete",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "fetchRoles": "false",
+              "roles": "[{\"id\":\"odh-api-core/EventMomentusManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "StudioPink Update Create Delete",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/StudioPinkManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "ReteAlFemminile Update Create Delete",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/ReteAlFemminileManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "WNET Create Update Delete",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "roles": "[{\"id\":\"odh-api-core/WnetManager\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "DSS Importer Create Update SkiArea Webcam ODHActivityPoi",
+            "description": "",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "fetchRoles": "false",
+              "roles": "[{\"id\":\"odh-api-core/DSSCreateUpdate\",\"required\":false}]"
+            }
+          },
+          {
+            "name": "ODHActivityPoi IDM Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "Venue IDM Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Venue?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "ODHActivityPoi Independent Create Update",
+            "description": "ODHActivityPoi Independent Create Update of Sources alperia, driwe, echargingspreadsheed, route220, iit",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?source=alperia&source=driwe&source=iit&source=echargingspreadsheet&source=route220&source=driwe-ocpi&source=neogy\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"Echarging Independent Manager\"]"
+            }
+          },
+          {
+            "name": "Measuringpoint IDM Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Weather/Measuringpoint?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "EventShort Source UNIBZ Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"EventShort?source=unibz\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"EventShort Source UNIBZ\"]"
+            }
+          },
+          {
+            "name": "Article Source NOI Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Article?source=noi\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Article NOI\"]"
+            }
+          },
+          {
+            "name": "EventShort Source Nobis Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"EventShort?source=nobis\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"EventShort Source Nobis\"]"
+            }
+          },
+          {
+            "name": "Webcam A22 Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"WebcamInfo?accessrole=A22\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"A22 Role\"]"
+            }
+          },
+          {
+            "name": "EventShort Source NOI Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"EventShort?source=noi\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"EventShort Source Noi\"]"
+            }
+          },
+          {
+            "name": "Eventshort Source Eurac Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"EventShort?source=eurac\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"EventShort Source Eurac\"]"
+            }
+          },
+          {
+            "name": "Accommodation IDM Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Accommodation?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "Event Source CENTROTREVI Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=trevilab\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Event Source CENTROTREVI Manager\"]"
+            }
+          },
+          {
+            "name": "Event Source DRIN Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=drin\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Event Source DRIN Manager\"]"
+            }
+          },
+          {
+            "name": "Accommodation Room IDM Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"AccommodationRoom?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "MetaData Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"MetaData\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"MetaData Writer\"]"
+            }
+          },
+          {
+            "name": "Source Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Source\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Source Writer\"]"
+            }
+          },
+          {
+            "name": "Activity  IDM Read",
+            "description": "Activity  IDM Read",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Activity?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "Poi IDM Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Poi?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "Gastronomy IDM Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Gastronomy?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "Webcam IDM Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"WebcamInfo?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "ODHActivityPoi A22 Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?accessrole=A22\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"A22 Role\"]"
+            }
+          },
+          {
+            "name": "Publisher Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Publisher\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Publisher Writer\"]"
+            }
+          },
+          {
+            "name": "DataWriter (Superuser) Permission",
+            "description": "Can Create Update Delete to all Endpoints except Source, Publisher, MataData",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"SkiArea\",\"Activity?accessrole=IDM\",\"ODHActivityPoi\",\"Event?accessrole=IDM\",\"Region\",\"Venue?accessrole=IDM\",\"MetaRegion\",\"District\",\"Area\",\"WebcamInfo?accessrole=A22\",\"WineAward\",\"Gastronomy?accessrole=IDM\",\"Venue\",\"Announcement\",\"EventShort\",\"Poi?accessrole=IDM\",\"WebcamInfo?accessrole=IDM\",\"Trip\",\"TourismAssociation\",\"Tag\",\"Municipality\",\"ODHActivityPoi?accessrole=A22\",\"AccommodationRoom?accessrole=IDM\",\"Example\",\"SkiRegion\",\"Accommodation?accessrole=IDM\",\"Article\",\"ODHActivityPoi?accessrole=IDM\",\"RoadIncident\",\"ODHTag\",\"Weather/Measuringpoint?accessrole=IDM\",\"UrbanGreen\"]",
+              "applyPolicies": "[\"DataWriter\"]"
+            }
+          },
+          {
+            "name": "Event IDM Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "Area IDM Read",
+            "description": "Area IDM Read",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Area?accessrole=IDM\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"IDM Role\"]"
+            }
+          },
+          {
+            "name": "Skidata Discoverswiss Create Update Delete",
+            "description": "Can Update Create Delete on Measuringpoints, ODHActivityPoi, SkiArea, SkiRegion with Source discoverswiss",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?source=discoverswiss\",\"SkiArea?source=discoverswiss\",\"SkiRegion?source=discoverswiss\",\"Weather/Measuringpoint?source=discoverswiss\"]",
+              "applyPolicies": "[\"DiscoverSwiss Skidata Writer\"]"
+            }
+          },
+          {
+            "name": "Announcement A22 Read",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Announcement?accessrole=A22\"]",
+              "scopes": "[\"Read\"]",
+              "applyPolicies": "[\"A22 Role\"]"
+            }
+          },
+          {
+            "name": "ODHActivityPoiWriter with Source SIAG Permission",
+            "description": "Can Create Update Delete ODHActivityPoi  Data with Source Siag",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?source=siag\"]",
+              "applyPolicies": "[\"ODHActivityPoiSiag Writer\"]"
+            }
+          },
+          {
+            "name": "Event Source EURAC Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=eurac\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Event Source EURAC\"]"
+            }
+          },
+          {
+            "name": "Event Source NOBIS Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=nobis\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Event Source NOBIS\"]"
+            }
+          },
+          {
+            "name": "Event Source NOI Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=noi\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Event Source NOI\"]"
+            }
+          },
+          {
+            "name": "Event Source UNIBZ Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=unibz\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Event Source UNIBZ\"]"
+            }
+          },
+          {
+            "name": "ODHActivityPoiWriter with Source SUEDTIROLWEIN Permission",
+            "description": "Can Create Update Delete ODHActivityPoi  Data with Source SuedtirolWein",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?source=suedtirolwein\"]",
+              "applyPolicies": "[\"ODHActivityPoiSuedtirolWein Writer\"]"
+            }
+          },
+          {
+            "name": "Tag with Source SIAG Permission",
+            "description": "Can Create Update Delete Tag Data with Source Siag",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Tag?source=siag\"]",
+              "applyPolicies": "[\"ODHActivityPoiSiag Writer\"]"
+            }
+          },
+          {
+            "name": "Venue Source Nobis Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Venue?source=nobis\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"Event Source NOBIS\"]"
+            }
+          },
+          {
+            "name": "Venue Source NOI Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Venue?source=noi\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"Event Source NOI\"]"
+            }
+          },
+          {
+            "name": "Venue Source EURAC Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Venue?source=eurac\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"Event Source EURAC\"]"
+            }
+          },
+          {
+            "name": "Event Source PEER Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=peer\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Event Source PEER\"]"
+            }
+          },
+          {
+            "name": "Municipality IDM Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Municipality?source=idm\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"Municipality Source IDM Update Create Delete\"]"
+            }
+          },
+          {
+            "name": "Region IDM Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Region?source=idm\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Region Source IDM Update Create Delete\"]"
+            }
+          },
+          {
+            "name": "Tourismassociation IDM Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"TourismAssociation?source=idm\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Tourismassociation Source IDM Update Create Delete\"]"
+            }
+          },
+          {
+            "name": "District IDM Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"District?source=idm\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"District Source IDM Update Create Delete\"]"
+            }
+          },
+          {
+            "name": "WebcamInfo Create Update DSS",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"WebcamInfo?source=dss\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"DSS Importer Create Update SkiArea Webcam ODHActivityPoi\"]"
+            }
+          },
+          {
+            "name": "SkiArea Source DSS Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"SkiArea?source=dss\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"DSS Importer Create Update SkiArea Webcam ODHActivityPoi\"]"
+            }
+          },
+          {
+            "name": "Skiarea Source IDM Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"SkiArea?source=idm\"]",
+              "scopes": "[\"Update\"]",
+              "applyPolicies": "[\"DSS Importer Create Update SkiArea Webcam ODHActivityPoi\"]"
+            }
+          },
+          {
+            "name": "ODHActivityPoi Source DSS Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?source=dss\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"DSS Importer Create Update SkiArea Webcam ODHActivityPoi\"]"
+            }
+          },
+          {
+            "name": "WebcamInfo Source Panocloud Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"WebcamInfo?source=panocloud\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"WebcamInfo Source Panocloud\"]"
+            }
+          },
+          {
+            "name": "WebcamInfo Source Panomax Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"WebcamInfo?source=panomax\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"WebcamInfo Source Panomax\"]"
+            }
+          },
+          {
+            "name": "WebcamInfo Source Feratel Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"WebcamInfo?source=feratel\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"WebcamInfo Source Feratel\"]"
+            }
+          },
+          {
+            "name": "Event Source Momentus Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=momentus\"]",
+              "scopes": "[\"Update\",\"Create\"]",
+              "applyPolicies": "[\"Event Source Momentus Create Update Delete\"]"
+            }
+          },
+          {
+            "name": "Event Source Wnet Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=wnet\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"WNET Create Update Delete\"]"
+            }
+          },
+          {
+            "name": "Event Source ReteAlFemminile Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=retealfemminile\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"ReteAlFemminile Update Create Delete\"]"
+            }
+          },
+          {
+            "name": "ODHActivityPoi Source ReteAlFemminile Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?source=retealfemminile\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"ReteAlFemminile Update Create Delete\"]"
+            }
+          },
+          {
+            "name": "Event Source StudioPink Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Event?source=studiopink\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"StudioPink Update Create Delete\"]"
+            }
+          },
+          {
+            "name": "ODHActivityPoi Source Wnet Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?source=wnet\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"WNET Create Update Delete\"]"
+            }
+          },
+          {
+            "name": "ODHActivityPoi Source StudioPink Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"ODHActivityPoi?source=studiopink\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"StudioPink Update Create Delete\"]"
+            }
+          },
+          {
+            "name": "Venue Source StudioPink Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Venue?source=studiopink\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"StudioPink Update Create Delete\"]"
+            }
+          },
+          {
+            "name": "Venue Source WNET Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Venue?source=wnet\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"WNET Create Update Delete\"]"
+            }
+          },
+          {
+            "name": "Venue Source ReteAlFemminile Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Venue?source=retealfemminile\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"WNET Create Update Delete\"]"
+            }
+          },
+          {
+            "name": "Venue Source DRIN Create Update",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Venue?source=drin\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Event Source DRIN Manager\"]"
+            }
+          },
+          {
+            "name": "Venue Source TREVILAB Create Update Delete",
+            "description": "",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "resources": "[\"Venue?source=trevilab\"]",
+              "scopes": "[\"Update\",\"Delete\",\"Create\"]",
+              "applyPolicies": "[\"Event Source CENTROTREVI Manager\"]"
+            }
+          }
+        ],
+        "scopes": [
+          {
+            "name": "Read",
+            "iconUri": ""
+          },
+          {
+            "name": "Delete",
+            "iconUri": ""
+          },
+          {
+            "name": "Update",
+            "iconUri": ""
+          },
+          {
+            "name": "Create",
+            "iconUri": ""
+          }
+        ],
+        "decisionStrategy": "AFFIRMATIVE"
+      },
+      "secret": "odh-tourism-api-dev-secret",
+      "redirectUris": []
+    },
+    {
+      "clientId": "opendatahub-parking-control-tower",
+      "name": "Parking Control Tower",
+      "description": "",
+      "enabled": true,
+      "publicClient": true,
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": true,
+      "protocol": "openid-connect",
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "basic",
+        "email"
+      ],
+      "protocolMappers": [],
+      "redirectUris": []
+    },
+    {
+      "clientId": "odh-iam",
+      "name": "ODH identity service",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "odh-iam-dev-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true
+    },
+    {
+      "clientId": "odh-iam-ui",
+      "name": "ODH identity console",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": [
+        "http://localhost:4010/*"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:4010/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "odh-iam audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "odh-iam",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "service-account-odh-iam",
+      "enabled": true,
+      "serviceAccountClientId": "odh-iam",
+      "clientRoles": {
+        "realm-management": [
+          "view-users",
+          "view-clients",
+          "view-authorization"
+        ]
+      }
+    },
+    {
+      "username": "service-account-odh-tourism-api",
+      "enabled": true,
+      "serviceAccountClientId": "odh-tourism-api",
+      "clientRoles": {
+        "odh-tourism-api": [
+          "uma_protection"
+        ]
+      }
+    },
+    {
+      "username": "anna",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "anna@example.com",
+      "firstName": "Anna",
+      "lastName": "Pichler",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "anna",
+          "temporary": false
+        }
+      ],
+      "clientRoles": {
+        "odh-mobility-v2": [
+          "BDP_A22",
+          "BDP_BLC",
+          "ODH_ROLE_PREMIUM"
+        ],
+        "odh-api-core": [
+          "EventNOIManager",
+          "ArticleNOIManager",
+          "IDM"
+        ],
+        "opendatahub-parking-control-tower": [
+          "operator",
+          "origin:A22",
+          "origin:STA"
+        ]
+      }
+    },
+    {
+      "username": "walter",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "walter@example.com",
+      "firstName": "Walter",
+      "lastName": "Hofer",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "walter",
+          "temporary": false
+        }
+      ],
+      "clientRoles": {
+        "odh-mobility-v2": [
+          "BDP_ADMIN"
+        ],
+        "odh-api-core": [
+          "DataWriter"
+        ],
+        "realm-management": [
+          "view-users"
+        ]
+      }
+    },
+    {
+      "username": "bob",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "bob@example.com",
+      "firstName": "Bob",
+      "lastName": "Gasser",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "bob",
+          "temporary": false
+        }
+      ],
+      "clientRoles": {}
+    }
+  ]
+}

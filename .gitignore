@@ -1,0 +1,15 @@
+# local state and credentials
+data/
+.env
+/iam
+/demo-api
+
+# demo console, not published yet
+web/*
+!web/README.md
+e2e/ui_test.py
+
+# PoC deployment from a workstation (test cluster identifiers, generated keys)
+deploy/scw-test/
+docs/poc-dev-scw.md
+iam.code-workspace

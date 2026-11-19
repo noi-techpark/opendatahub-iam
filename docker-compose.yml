@@ -1,0 +1,82 @@
+# Local development stack. Every secret in this file is a throwaway dev value.
+x-service-keys: &service-keys
+  IAM_SERVICE_KEY_TIMESERIES: dev-timeseries-service-key
+  IAM_SERVICE_KEY_CONTENT: dev-content-service-key
+  IAM_SERVICE_KEY_PARKING: dev-parking-service-key
+
+services:
+  postgres:
+    image: docker.io/library/postgres:17-alpine
+    environment:
+      POSTGRES_USER: iam
+      POSTGRES_PASSWORD: iam
+      POSTGRES_DB: iam
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.3
+    command: start-dev --import-realm
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      # Fixes the issuer, so tokens fetched over the internal address carry
+      # the same `iss` as tokens fetched by the browser.
+      KC_HOSTNAME: http://localhost:8180
+    ports:
+      - "127.0.0.1:8180:8080"
+    volumes:
+      - ./keycloak/realm-noi-dev.json:/opt/keycloak/data/import/realm-noi-dev.json:ro,z
+
+  iam:
+    image: odh-iam:dev
+    build: .
+    environment:
+      <<: *service-keys
+      IAM_PUBLIC_URL: http://localhost:4010
+      IAM_DATABASE_URL: postgres://iam:iam@postgres:5432/iam
+      IAM_KEYCLOAK_URL: http://keycloak:8080
+      IAM_KEYCLOAK_ISSUER: http://localhost:8180/realms/noi
+      IAM_KEYCLOAK_REALM: noi
+      IAM_KEYCLOAK_CLIENT_ID: odh-iam
+      IAM_KEYCLOAK_CLIENT_SECRET: odh-iam-dev-secret
+      IAM_DEMO_API_URL: http://localhost:4011
+      IAM_CACHE_TTL: ${IAM_CACHE_TTL:-15s}
+      IAM_JWT_TTL: ${IAM_JWT_TTL:-60s}
+    ports:
+      - "127.0.0.1:4010:4010"
+    volumes:
+      - iam-data:/data
+    depends_on:
+      - postgres
+      - keycloak
+
+  # The demo APIs sit behind the edge and are not published on the host:
+  # they trust only JWTs the identity service signed, which only the edge
+  # obtains.
+  demo-api:
+    image: odh-iam:dev
+    build: .
+    command: demo-api
+    environment:
+      DEMO_SERVICE_KEY: dev-timeseries-service-key
+      IAM_URL: http://iam:4010
+      IAM_ISSUER: http://localhost:4010
+    depends_on:
+      - iam
+
+  edge:
+    image: docker.io/library/nginx:1.27-alpine
+    ports:
+      - "127.0.0.1:4011:4011"
+    volumes:
+      - ./edge/nginx.conf:/etc/nginx/nginx.conf:ro,z
+      - ./edge/hooked.conf:/etc/nginx/hooked.conf:ro,z
+    depends_on:
+      - demo-api
+
+volumes:
+  pgdata:
+  iam-data:

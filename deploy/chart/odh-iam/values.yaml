@@ -1,0 +1,45 @@
+replicaCount: 2
+
+image:
+  repository: rg.fr-par.scw.cloud/odh-iam-poc/odh-iam
+  tag: dev
+  pullPolicy: Always
+
+# Secret with keys databaseUrl, keycloakClientSecret, serviceKeyContent;
+# created outside the chart.
+secretName: odh-iam
+# Secret with key signing-key.pem; created outside the chart.
+signingKeySecretName: odh-iam-signing-key
+
+ingress:
+  host: account.scw.opendatahub.testingmachine.eu
+  className: nginx
+  annotations: {}
+
+env:
+  IAM_PUBLIC_URL: https://account.scw.opendatahub.testingmachine.eu
+  IAM_KEYCLOAK_URL: https://auth.scw.opendatahub.testingmachine.eu/auth
+  IAM_KEYCLOAK_REALM: noi
+  IAM_KEYCLOAK_CLIENT_ID: odh-iam
+  IAM_SESSION_AUDIENCE: odh-iam
+  IAM_UI_CLIENT_ID: odh-iam-ui
+  IAM_CACHE_TTL: 15s
+  IAM_JWT_TTL: 60s
+
+# Rendered into the ConfigMap the service reads as IAM_CONFIG.
+config:
+  apiClients:
+    - clientId: odh-api-core
+      label: Content API
+  inheritedRoles: ["ODH_ROLE_*"]
+  services:
+    - name: content
+      keyEnv: IAM_SERVICE_KEY_CONTENT
+      audience: odh-api-core
+      clients: [odh-api-core]
+      flatRoleClaim: { claim: role, client: odh-api-core }
+      uma: [odh-tourism-api]
+
+resources:
+  requests: { cpu: 50m, memory: 64Mi }
+  limits: { memory: 256Mi }

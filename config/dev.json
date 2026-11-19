@@ -1,0 +1,30 @@
+{
+  "apiClients": [
+    { "clientId": "odh-mobility-v2", "label": "Timeseries API" },
+    { "clientId": "odh-api-core", "label": "Content API" },
+    { "clientId": "opendatahub-parking-control-tower", "label": "Parking control tower" }
+  ],
+  "inheritedRoles": ["ODH_ROLE_*"],
+  "services": [
+    {
+      "name": "timeseries",
+      "keyEnv": "IAM_SERVICE_KEY_TIMESERIES",
+      "audience": "odh-mobility-v2",
+      "clients": ["odh-mobility-v2"]
+    },
+    {
+      "name": "content",
+      "keyEnv": "IAM_SERVICE_KEY_CONTENT",
+      "audience": "odh-api-core",
+      "clients": ["odh-api-core"],
+      "flatRoleClaim": { "claim": "role", "client": "odh-api-core" },
+      "uma": ["odh-tourism-api"]
+    },
+    {
+      "name": "parking",
+      "keyEnv": "IAM_SERVICE_KEY_PARKING",
+      "audience": "opendatahub-parking-control-tower",
+      "clients": ["opendatahub-parking-control-tower"]
+    }
+  ]
+}

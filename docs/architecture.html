@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ODH Identity Architecture</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root { padding-block: 0; }
+  body { margin: 0; font-family: system-ui, sans-serif; font-size: 14px; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<style>
+  /* Layout: one reading column; diagrams and tables may run wider than the text inside their own scroll containers. */
+  :root {
+    --bg: #f7f8f6;
+    --surface: #ffffff;
+    --fg: #1d2420;
+    --muted: #5d6a63;
+    --line: #cfd6d1;
+    --accent: #0f6e63;
+    --accent-soft: #d9ece8;
+    --warn: #9a5b00;
+    --warn-soft: #f6e9d2;
+    --bad: #a4302a;
+    --code-bg: #eef1ef;
+    --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #151a17; --surface: #1d2420; --fg: #e6ebe8; --muted: #9aa8a0; --line: #334039;
+      --accent: #5fc4b4; --accent-soft: #1b3a35; --warn: #e2a84a; --warn-soft: #3a2d14;
+      --bad: #f09088; --code-bg: #111613;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #151a17; --surface: #1d2420; --fg: #e6ebe8; --muted: #9aa8a0; --line: #334039;
+    --accent: #5fc4b4; --accent-soft: #1b3a35; --warn: #e2a84a; --warn-soft: #3a2d14;
+    --bad: #f09088; --code-bg: #111613;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 32px 72px;
+  }
+  main { max-width: 980px; margin: 0 auto; display: grid; gap: 44px; }
+  header { max-width: 70ch; }
+  h1 { font-size: 1.9rem; font-weight: 600; margin: 0 0 8px; text-wrap: balance; letter-spacing: -0.01em; }
+  h2 { font-size: 1.35rem; font-weight: 600; margin: 0 0 12px; text-wrap: balance; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 22px 0 6px; }
+  p, li { max-width: 70ch; }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 5px; }
+  .lede { color: var(--muted); font-size: 1.1rem; }
+  .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .part { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  code { font-family: var(--font-mono); font-size: 0.86em; background: var(--code-bg); border-radius: 3px; padding: 0 4px; }
+  pre { font-family: var(--font-mono); font-size: 0.84rem; background: var(--code-bg); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; overflow-x: auto; margin: 0 0 12px; line-height: 1.45; }
+  pre code { background: none; padding: 0; }
+  figure { margin: 0; }
+  .fig { border: 1px solid var(--line); background: var(--surface); border-radius: 4px; padding: 12px; overflow-x: auto; }
+  .fig svg { display: block; min-width: 760px; max-width: 100%; height: auto; }
+  .fig pre.mermaid { background: none; border: 0; padding: 0; margin: 0; min-width: 560px; }
+  figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 8px; max-width: 80ch; }
+  .verdict { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 12px 16px; border-radius: 0 4px 4px 0; max-width: 74ch; }
+  .verdict p:last-child { margin-bottom: 0; }
+  .caveat { border-left: 3px solid var(--warn); background: var(--warn-soft); padding: 12px 16px; border-radius: 0 4px 4px 0; max-width: 74ch; }
+  .caveat p:last-child { margin-bottom: 0; }
+  .trust { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 12px 0 4px; }
+  .trust > div { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-width: 0; }
+  .trust .issuers { font-family: var(--font-mono); font-size: 0.85rem; margin: 4px 0 6px; }
+  .trust .issuers span { display: inline-block; background: var(--code-bg); padding: 1px 7px; border-radius: 3px; margin: 2px 4px 2px 0; }
+  .one { color: var(--accent); font-weight: 600; }
+  .two { color: var(--bad); font-weight: 600; }
+  .good { color: var(--accent); font-weight: 600; }
+  .bad { color: var(--bad); font-weight: 600; }
+  .warnt { color: var(--warn); font-weight: 600; }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td code { white-space: nowrap; }
+  tr.total td { font-weight: 600; border-top: 2px solid var(--line); }
+  .pill { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; padding: 1px 7px; border-radius: 10px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .pill.code { color: var(--warn); border-color: var(--warn); }
+  .pill.infra { color: var(--accent); border-color: var(--accent); }
+  .twocol { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .twocol > div { min-width: 0; border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; background: var(--surface); }
+  .twocol h3 { margin-top: 0; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+
+<main>
+  <header>
+    <div class="eyebrow">Open Data Hub · identity service</div>
+    <h1>Who do the APIs trust, and where does the service sit</h1>
+    <p class="lede">The identity service is the only issuer the APIs know, and the hook at the edge is the identity-aware proxy. Part one is the design and every kind of caller, inside and outside the cluster. Part two is how it lands on the existing infrastructure, what changes per repository, and the effort.</p>
+    <p><strong>State of the PoC.</strong> The repository implements the hook end to end, with an nginx <code>auth_request</code> dev edge, the service key in a header, and passing API and browser suites. The claim set below, the <code>client_credentials</code> token endpoint (<code>POST /v1/token</code>) and the pass-through of the service's own JWT at the hook are implemented and covered by the suites. Not built: key rotation, an operator view, rate limiting.</p>
+  </header>
+
+  <section>
+    <div class="part">Part one · the design</div>
+    <h2>One issuer, a hook at the edge</h2>
+    <p>Decided 2026-10-23: the gateway topology. The identity service is the only token issuer the APIs know. Every request to an API passes an authorization step at the edge, where the proxy asks the service to resolve whatever credential arrived (Keycloak token, API token, nothing) and forwards the request with a JWT the service signed. Keycloak still logs users in, authenticates machine clients and holds role assignments; its tokens stop at the edge. The hook is the identity-aware proxy: the decision half lives in the service, the proxy half is whatever already fronts the API.</p>
+    <div class="trust">
+      <div>
+        <div class="eyebrow">Today, production</div>
+        <div class="issuers"><span>keycloak</span></div>
+        <span class="one">1 issuer</span> · no user API tokens · roles frozen into each token
+      </div>
+      <div>
+        <div class="eyebrow">Target</div>
+        <div class="issuers"><span>odh-iam</span></div>
+        <span class="one">1 issuer</span> · Keycloak behind it · API tokens · roles re-read live
+      </div>
+    </div>
+
+    <h3>The hook</h3>
+    <figure>
+      <div class="fig">
+        <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant E as Ingress (auth_request)
+    participant I as odh-iam
+    participant K as Keycloak
+    participant A as API (any)
+    C->>K: login (browser) or client_credentials (machine)
+    K-->>C: Keycloak access token
+    C->>E: GET /timeseries/... Bearer &lt;keycloak jwt | odh_pat_… | odh-iam jwt | none&gt;
+    E->>I: GET /v1/forward-auth/timeseries (client's headers, X-Service-Key)
+    alt Keycloak token
+        I->>I: verify with Keycloak JWKS, client allowed for this API?
+        I->>K: admin API: enabled? current roles? (cached 15 s)
+    else API token
+        I->>I: hash lookup, revoked?, expired?
+        I->>K: admin API: owner enabled? current roles? (cached 15 s)
+        I->>I: carried = allow-list ∩ roles
+    else odh-iam JWT (from the token endpoint)
+        I->>I: verify own signature, audience matches: pass through
+    else no credential
+        I->>I: anonymous, empty Authorization
+    end
+    I-->>E: 200 + Authorization: Bearer &lt;odh-iam jwt, aud=timeseries&gt;, or 401
+    E->>A: request with Authorization replaced
+    A->>A: verify with odh-iam JWKS only
+    A-->>C: 200
+        </pre>
+      </div>
+      <figcaption>One verifier per API. The branch on credential type lives in one place, the service.</figcaption>
+    </figure>
+    <p><code>auth_request</code> (nginx), <code>forward_auth</code> (Caddy), <code>forwardAuth</code> (Traefik) and <code>ext_authz</code> (Envoy) are one mechanism: before proxying, the proxy sends the client's headers to a URL, a 2xx means proxy and copy the named headers onto the request, a 401 or 403 goes back to the client, anything else is a 500. The proxy keeps no session and does this on every request. The service only ever sees headers, never a body.</p>
+
+    <h3>The token endpoint</h3>
+    <p>A hook converts a credential that arrives with a request. A caller that never passes a proxy, such as a transformer writing to <code>bdp-core</code> over cluster DNS, needs the conversion ahead of time. The service therefore also offers a standard <code>client_credentials</code> token endpoint and acts as a broker in front of Keycloak's.</p>
+    <figure>
+      <div class="fig">
+        <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    participant T as Transformer (in cluster)
+    participant I as odh-iam
+    participant K as Keycloak
+    participant W as bdp-core
+    T->>I: POST /v1/token grant_type=client_credentials, id, secret
+    I->>K: the same request, to Keycloak's token endpoint
+    K-->>I: Keycloak token for service-account-&lt;client&gt;, or 401
+    I->>K: admin API: enabled? current roles? (cached 15 s)
+    I-->>T: {access_token: &lt;odh-iam jwt, aud = every configured API&gt;, expires_in}
+    T->>W: http://bdp-core.core.svc.cluster.local, Bearer &lt;odh-iam jwt&gt;
+    W->>W: verify with odh-iam JWKS only
+    W-->>T: 200
+        </pre>
+      </div>
+      <figcaption>Keycloak still checks the secret; the service stores none. The library on the caller's side renews the token on its own, so the caller changes one URL.</figcaption>
+    </figure>
+    <ul>
+      <li>The response is the standard <code>access_token</code>, <code>token_type</code>, <code>expires_in</code> body that <code>golang.org/x/oauth2/clientcredentials</code> and Spring's client registration expect. Nothing else on the caller changes.</li>
+      <li>The JWT carries the same claims the hook produces: subject, <code>azp</code> set to the client id, roles per client, principal kind <code>client</code>. Its audience is what Keycloak's would be plus every configured API, so one token serves bdp-core and ninja-api as a Keycloak token does today; roles decide what it may do there, as now. No user data. Machine tokens can live minutes instead of 60 s.</li>
+      <li>Disabling the client in Keycloak stops its next renewal. A role change reaches it at the next renewal or the cache window, whichever is later.</li>
+      <li>Because such a JWT is a legitimate credential, the hook passes it through when the signature and audience check out. The PoC rejects it today and has a test saying so; that test flips.</li>
+    </ul>
+
+    <h3>What must hold</h3>
+    <ol>
+      <li>An API verifies JWTs from the identity service and from nobody else.</li>
+      <li>Every request to an API either passed a hook or already carries a service JWT. A path around the hook yields only anonymous access, since a Keycloak token sent straight to the API fails verification, but it must not exist for a protected deployment.</li>
+      <li>Whoever obtains a service JWT is authenticated: the hook's caller by its service key, the token endpoint's caller by Keycloak.</li>
+    </ol>
+    <p>None of the three names Kubernetes. Where the hook runs is a placement choice, made per API by where its traffic enters.</p>
+    <ul>
+      <li><strong>APIs</strong> swap the Keycloak issuer for the service's issuer in their existing config (<code>issuer-uri</code>, <code>Authority</code>, <code>oidc.NewProvider</code>) and nothing else. The claim shape is the same as today, so role-reading code stays.</li>
+      <li><strong>Keycloak</strong> is still the login page, the user store, the client store and where roles are assigned. Sessions get the same live treatment as tokens: roles are re-read on each resolve, so a revoked role reaches an interactive session within the cache window.</li>
+      <li><strong>The service</strong> accepts any valid token of the realm as a session, which is what every API does today, and passes <code>azp</code> through unchanged. The one strict audience check is on its own self-service routes: minting API tokens and reading user data need a token issued for the service, so a token taken from a frontend cannot create API tokens.</li>
+    </ul>
+    <div class="caveat">
+      <p><strong>The fork this creates for the content API.</strong> Keycloak's UMA endpoint only evaluates a Keycloak access token, which content never sees behind the hook, for sessions either. So content gets its permissions from the identity service for all traffic, which makes the role-based evaluator in <code>internal/uma</code> the only evaluator rather than a shadow of Keycloak's. Keycloak's Authorization tab becomes a config editor whose output the service reads. The alternative is to keep the 47-row role-to-permission table in content itself and drop UMA. bdp-core's <code>bdp://</code> resources raise the same question.</p>
+    </div>
+    <p><strong>Costs accepted.</strong> One in-cluster hop on every API request through the ingress, anonymous ones included (3 ms warm, 95 ms cold for content). The service and its database are on the path of every request. Its signing key is the master key, so rotation is required rather than nice to have. The JWT must mirror Keycloak's claims faithfully, <code>azp</code> included, for the APIs' existing checks to keep working.</p>
+
+    <h3>The JWT the APIs receive</h3>
+    <p>The topology needs two things in the token: <code>iss</code> is the service and the signature is the service's. Everything else mirrors what Keycloak would have issued for that user, with the roles re-read, plus claims no existing API reads.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Claim</th><th>Value</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><code>iss</code></td><td>the service's public URL</td><td>The APIs' existing issuer setting is repointed here; discovery and JWKS sit at the standard paths.</td></tr>
+          <tr><td><code>sub</code></td><td>the Keycloak user id; the service-account user for a machine client</td><td>Same person whether the credential was a session or an API token.</td></tr>
+          <tr><td><code>azp</code></td><td>passed through from the Keycloak token: the SPA or machine client that obtained it</td><td>Parking asserts it today and keeps doing so. It records who asked for the token; it grants nothing.</td></tr>
+          <tr><td><code>aud</code></td><td>Keycloak's value plus the target API</td><td>APIs that ignore <code>aud</code>, all four today, see no difference. An API may later check it as hardening against replay of its JWT at another API; one configuration line.</td></tr>
+          <tr><td><code>exp</code>, <code>iat</code></td><td>60 s for hook JWTs, minutes for the token endpoint</td><td>The hook mints a fresh one per request, so an API's view is never older than that plus the cache window.</td></tr>
+          <tr><td><code>typ</code>, <code>preferred_username</code>, <code>email</code></td><td>as Keycloak</td><td>Logging and display code reads them.</td></tr>
+          <tr><td><code>resource_access.&lt;client&gt;.roles</code>, flat <code>role</code></td><td>Keycloak's shape, roles current, API tokens intersected with their allow-list</td><td>Timeseries, parking and content parse exactly this.</td></tr>
+          <tr><td><code>odh_principal</code>, <code>odh_token_id</code></td><td><code>session</code>, <code>api_token</code> or <code>client</code>; the token's id</td><td>A Keycloak token cannot say "this is a delegated token". Audit, and an API may refuse an operation by kind.</td></tr>
+          <tr><td><code>odh_permissions</code></td><td>content's UMA permission list in Keycloak's shape</td><td>Keycloak's UMA endpoint needs a Keycloak token content no longer sees.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Dropped: <code>realm_access</code>, <code>scope</code>, <code>session_state</code>, <code>sid</code>, <code>acr</code>, <code>allowed-origins</code>, name fields. No API reads them. A login stays one Keycloak session shared by every SPA through <code>check-sso</code>; each SPA still obtains its own token, and one SPA still calls several APIs with it, because the hook converts that one token separately at each API.</p>
+    <div class="caveat">
+      <p><strong>API tokens on parking.</strong> An API token has no originating SPA, so whatever <code>azp</code> the service writes, parking's check rejects it. If users should be able to issue API tokens for parking, parking must accept the service's client in that check or switch to <code>aud</code>. If not, parking changes nothing beyond the issuer URL. That is parking's decision, not a requirement of the format.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Who calls the APIs, and how each one gets a service JWT</h2>
+    <p>Every caller that sends a Keycloak token today, taken from the application and collector repositories, and what the design means for it. No backend forwards a user's token downstream: where a backend calls another API, it uses its own service account.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Caller</th><th>Today</th><th>Target</th><th>Change on the caller</th></tr></thead>
+        <tbody>
+          <tr><td>Browser SPA: databrowser, discovery, parking web, the console</td><td>Keycloak login with <code>keycloak-js</code>, Keycloak token to the API host</td><td>Same; the hook converts it</td><td class="good">None. One login serves every SPA through <code>check-sso</code>; one SPA calls several APIs with one token.</td></tr>
+          <tr><td>Backend with a service account calling a public host: parking control tower to <code>mobility.api</code> and <code>push.api</code></td><td>Keycloak client token over the public host</td><td>Same; the hook treats a client token as a session</td><td class="good">None. Switching its token URL to the service is optional.</td></tr>
+          <tr><td>Backend calling over cluster DNS: 48 transformers to <code>bdp-core</code>, 1 to <code>ninja-api</code></td><td>Keycloak client token, no ingress</td><td>Service JWT from the token endpoint, no ingress</td><td class="warnt">One value: the token URL in the <code>oauth-collector</code> secret.</td></tr>
+          <tr><td>Content transformers to <code>tourism.api</code> (17)</td><td>Keycloak client token over the public host, token URL in each values file</td><td>Same; the hook converts</td><td class="good">None, or the token URL for consistency.</td></tr>
+          <tr><td>Outside partners pushing to <code>mobility.share</code></td><td>Keycloak client token over the public host</td><td>Same; the hook converts</td><td class="good">None.</td></tr>
+          <tr><td>A script, CI job or notebook with a user's API token</td><td>Did not exist</td><td><code>odh_pat_…</code> to the API host; the hook converts</td><td>New.</td></tr>
+          <tr><td>A system outside the cluster with its own backend: discovery</td><td>Validates Keycloak tokens itself</td><td>Its own nginx runs the hook; it validates service JWTs</td><td class="warnt">One <code>auth_request</code> block, issuer and JWKS URL.</td></tr>
+          <tr><td>The APIs: timeseries, content, parking, bdp-core</td><td>Trust Keycloak's issuer</td><td>Trust the service's issuer only</td><td class="warnt">Issuer and JWKS URL; content and bdp-core also their UMA path.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 960 600" role="img" aria-label="Every kind of caller: a browser SPA logs in at Keycloak and sends the Keycloak token to the cluster ingress, where the hook swaps it for a service JWT; a script sends an API token the same way; transformers inside the cluster obtain a service JWT from the token endpoint and call bdp-core over cluster DNS without a hook; a docker host with its own backend runs the hook in its own nginx over the service's public host; every API verifies the service JWKS; the service reads users and roles from Keycloak.">
+          <defs>
+            <marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+            <marker id="a5n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker>
+          </defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.2" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12.5">
+            <rect x="560" y="100" width="390" height="380" rx="6" stroke-dasharray="5 4" opacity="0.6"/>
+            <text x="574" y="120" fill="currentColor" stroke="none" font-size="11" opacity="0.8">Kubernetes cluster</text>
+            <rect x="560" y="506" width="390" height="84" rx="6" stroke-dasharray="5 4" opacity="0.6"/>
+            <text x="574" y="524" fill="currentColor" stroke="none" font-size="11" opacity="0.8">docker01 · e.g. discovery</text>
+
+            <rect x="20" y="20" width="180" height="56" rx="4"/>
+            <text x="110" y="43" text-anchor="middle" fill="currentColor" stroke="none">script, CI, partner</text>
+            <text x="110" y="61" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">API token or Keycloak client token</text>
+
+            <rect x="20" y="130" width="180" height="56" rx="4"/>
+            <text x="110" y="153" text-anchor="middle" fill="currentColor" stroke="none">SPA in a browser</text>
+            <text x="110" y="171" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">databrowser, discovery, S3 sites</text>
+
+            <rect x="20" y="390" width="180" height="56" rx="4"/>
+            <text x="110" y="413" text-anchor="middle" fill="currentColor" stroke="none">Keycloak</text>
+            <text x="110" y="431" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">auth.opendatahub.com · login only</text>
+
+            <rect x="600" y="130" width="140" height="56" rx="4"/>
+            <text x="670" y="153" text-anchor="middle" fill="currentColor" stroke="none">ingress-nginx</text>
+            <text x="670" y="171" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">auth_request hook</text>
+
+            <rect x="790" y="130" width="140" height="56" rx="4"/>
+            <text x="860" y="149" text-anchor="middle" fill="currentColor" stroke="none">APIs</text>
+            <text x="860" y="165" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">timeseries · content</text>
+            <text x="860" y="179" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">parking · bdp-core</text>
+
+            <rect x="770" y="250" width="130" height="56" rx="4"/>
+            <text x="835" y="273" text-anchor="middle" fill="currentColor" stroke="none">transformers</text>
+            <text x="835" y="291" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">48 deployments</text>
+
+            <rect x="600" y="380" width="330" height="84" rx="4" stroke="var(--accent)" stroke-width="1.6"/>
+            <text x="765" y="398" text-anchor="middle" fill="currentColor" stroke="none">identity service</text>
+            <text x="765" y="415" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">in-cluster: forward-auth and token endpoint</text>
+            <text x="765" y="429" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">public host: both, with caller credential · resolve · JWKS</text>
+            <text x="765" y="443" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">reads users, clients and roles from Keycloak</text>
+
+            <rect x="600" y="530" width="140" height="48" rx="4"/>
+            <text x="670" y="550" text-anchor="middle" fill="currentColor" stroke="none">its own nginx</text>
+            <text x="670" y="566" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">auth_request, same hook</text>
+            <rect x="790" y="530" width="140" height="48" rx="4"/>
+            <text x="860" y="550" text-anchor="middle" fill="currentColor" stroke="none">its own backend</text>
+            <text x="860" y="566" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">verifies the service JWKS</text>
+
+            <polyline points="200,48 700,48 700,130" marker-end="url(#a5)"/>
+            <text x="300" y="42" fill="currentColor" stroke="none" font-size="11">Authorization: odh_pat_… or Keycloak client token</text>
+
+            <line x1="110" y1="186" x2="110" y2="390" marker-end="url(#a5)"/>
+            <text x="120" y="290" fill="currentColor" stroke="none" font-size="11">1 · login, PKCE, check-sso</text>
+
+            <line x1="200" y1="158" x2="600" y2="158" marker-end="url(#a5)"/>
+            <text x="300" y="152" fill="currentColor" stroke="none" font-size="11">2 · Authorization: Keycloak access token</text>
+
+            <line x1="640" y1="186" x2="640" y2="380" stroke="var(--accent)" marker-end="url(#a5n)"/>
+            <text x="648" y="290" fill="var(--accent)" stroke="none" font-size="11">auth_request, 3 ms</text>
+            <line x1="740" y1="158" x2="790" y2="158" marker-end="url(#a5)"/>
+            <text x="765" y="124" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">service JWT</text>
+            <line x1="920" y1="186" x2="920" y2="380" stroke-dasharray="3 3" marker-end="url(#a5)"/>
+            <text x="926" y="340" fill="currentColor" stroke="none" font-size="11">JWKS</text>
+
+            <line x1="835" y1="250" x2="835" y2="186" marker-end="url(#a5)"/>
+            <text x="827" y="222" text-anchor="end" fill="currentColor" stroke="none" font-size="11">service JWT, cluster DNS</text>
+            <line x1="835" y1="306" x2="835" y2="380" stroke="var(--accent)" marker-end="url(#a5n)"/>
+            <text x="843" y="348" fill="var(--accent)" stroke="none" font-size="11">client_credentials</text>
+
+            <line x1="600" y1="420" x2="200" y2="420" marker-end="url(#a5)"/>
+            <text x="300" y="414" fill="currentColor" stroke="none" font-size="11">admin API + token endpoint: users, clients, roles</text>
+
+            <line x1="670" y1="530" x2="670" y2="464" stroke="var(--accent)" marker-end="url(#a5n)"/>
+            <text x="680" y="500" fill="var(--accent)" stroke="none" font-size="11">auth_request over the public host</text>
+            <line x1="740" y1="554" x2="790" y2="554" marker-end="url(#a5)"/>
+            <text x="765" y="524" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">service JWT</text>
+            <line x1="860" y1="530" x2="860" y2="464" stroke-dasharray="3 3" marker-end="url(#a5)"/>
+            <text x="870" y="500" fill="currentColor" stroke="none" font-size="11">JWKS</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Green is where a service JWT is obtained: the hook, at whichever proxy fronts the API, or the token endpoint for callers that pass no proxy. Everything to the right of a green arrow sees one issuer.</figcaption>
+    </figure>
+
+    <h3>Inside the cluster</h3>
+    <p>Most writes never touch the ingress. The collectors repository shows where in-cluster traffic goes and how it authenticates:</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>In-cluster target</th><th>Who calls it</th><th>Credential today</th></tr></thead>
+        <tbody>
+          <tr><td><code>bdp-core.core.svc.cluster.local</code>, the timeseries writer</td><td>48 transformer deployments</td><td>Keycloak <code>client_credentials</code> from the public token URL; secret <code>oauth-collector</code>, client <code>odh-mobility-datacollector</code></td></tr>
+          <tr><td><code>ninja-api.core.svc.cluster.local</code></td><td>1 transformer, reads</td><td>Same secret</td></tr>
+          <tr><td><code>raw-writer-2.core.svc.cluster.local</code></td><td>Pollers</td><td>None</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>bdp-core is therefore a fourth resource server: Keycloak client <code>odh-mobility-writer</code>, an <code>ADMIN</code> role, its own UMA with <code>bdp://</code> resource URIs, a public host <code>mobility.share.opendatahub.com</code> for outside pushers, and most of its traffic arriving over cluster DNS. The hook in ingress-nginx never sees that traffic. Under "trust only the service's issuer" those 48 writers would be rejected the moment bdp-core switches issuer; under "accept traffic only from the ingress" they would be cut off one layer lower.</p>
+    <p>Three ways to close it, and the choice:</p>
+    <ul>
+      <li><strong>Route through the ingress anyway.</strong> Point <code>BDP_BASE_URL</code> at the ingress controller's cluster service with the right Host header. Nothing new to build, 48 values files change, and every write pays a hop and a hook call for no gain, since the caller is a known machine client.</li>
+      <li><strong>The token endpoint.</strong> Chosen. One value in the <code>oauth-collector</code> secret, rendered by <code>cluster-secrets</code> from <code>oauthCollector.tokenUri</code> in the environment files, moves 49 deployments at once. In-cluster calls stay in-cluster. The NetworkPolicy for bdp-core and ninja-api allows the collector namespace next to the ingress.</li>
+      <li><strong>A pod-level hook.</strong> A mesh with <code>ext_authz</code>, or an nginx sidecar in the bdp-core pod. Correct, and far heavier than the problem.</li>
+    </ul>
+    <div class="caveat">
+      <p><strong>bdp-core's UMA.</strong> Non-admin pushers are authorized by Keycloak resources in the <code>bdp://station?origin=…</code> form, evaluated with a Keycloak token that bdp-core will no longer see. The service's role-based evaluator would have to cover those policies too, or the grants move into bdp-core. Which policy types the writer actually uses has to be checked before the cutover; the service refuses to approximate anything that is not role-based.</p>
+    </div>
+
+    <h3>Outside the cluster</h3>
+    <p>For the cluster APIs, ingress-nginx is where the three conditions above are cheapest: their traffic already converges there, the service is one in-cluster hop away, a NetworkPolicy makes "only through the hook" true for the API and "only from the ingress" true for the forward-auth route, and the parking host that never touches Caddy is covered. Running the same hook on the Caddy VMs would miss parking, send every auth call out of the cluster and back, and need a hand-written <code>.caddy</code> file per host. A system elsewhere runs the hook at its own edge, against the service's public host, and the service authenticates that caller by its key header rather than by network position.</p>
+    <h3>Browser frontends: no change</h3>
+    <p><code>databrowser</code> and <code>discovery</code> log in with <code>keycloak-js</code> (PKCE, <code>check-sso</code>, silent refresh every 6 s) and send the Keycloak access token to the content API. A static site on S3 does exactly the same. With the hook that stays as it is: the browser logs in at <code>auth.opendatahub.com</code>, gets a Keycloak token, sends it to <code>tourism.api.opendatahub.com</code>; the ingress hook verifies it as a session, re-reads the user's roles, and the API receives a service JWT. The frontend never sees the service, needs no new library and no new login. Where the SPA is hosted is irrelevant: S3, a docker host behind Caddy or the cluster, because the SPA has no server side and the hook sits in front of the API it calls, not in front of the site.</p>
+    <p>Two things must be true for that to work, and both are service-side:</p>
+    <ul>
+      <li><strong>Which Keycloak tokens the hook accepts.</strong> Any valid token of the realm, regardless of audience, because content runs with <code>ValidateAudience=false</code> and the SPA clients have no audience mapper. That is what every API accepts today. A per-API list of allowed frontends was considered and dropped: the databrowser calls content and mobility with one token, and each API already applies its own rule, parking's <code>azp</code> check included.</li>
+      <li><strong>CORS on a 401.</strong> When the hook rejects a token, nginx answers the browser itself, without the CORS headers the API would have added, and the browser reports a CORS failure instead of a 401. Either the ingress adds CORS headers (ingress-nginx's <code>enable-cors</code> annotations) or the hook lets an invalid token through as anonymous and leaves the 401 to the API. The preflight itself carries no <code>Authorization</code> and resolves as anonymous.</li>
+    </ul>
+    <p>The frontends still need Keycloak to be public, which every cleanup above preserves: only the admin paths get restricted.</p>
+
+    <h3>A system with its own backend, outside the cluster</h3>
+    <p><code>discovery</code> is the concrete case: frontend, Go backend and chatbot in docker-compose on <code>docker01</code>, nginx in front, the backend validating Keycloak JWTs against Keycloak's JWKS and reading <code>resource_access</code> roles. It joins like the cluster APIs do, at its own edge. There is one flow for every API; what differs is only which proxy makes the hook call.</p>
+    <table>
+      <thead><tr><th></th><th>Discovery joining</th></tr></thead>
+      <tbody>
+        <tr><td>What changes</td><td>Its nginx gains <code>auth_request</code> to <code>https://account.opendatahub.com/v1/forward-auth/discovery</code> with the service key in <code>X-Service-Key</code>; the validator's issuer and JWKS URL move from Keycloak to the service. Its frontend does not change.</td></tr>
+        <tr><td>What it gets</td><td>API tokens, live role changes, user data, the same identity shape as the cluster APIs.</td></tr>
+        <tr><td>Cost per request</td><td>One public round trip to the service, tens of ms instead of 3, on authenticated requests. Anonymous requests can skip the call.</td></tr>
+        <tr><td>Who may call the hook</td><td>Not a NetworkPolicy. The service authenticates the caller by the key header, held in that host's compose environment or Caddy config, which live in private ansible variables.</td></tr>
+      </tbody>
+    </table>
+    <p>The place a system joins is its own edge: the nginx it already has, or Caddy's <code>forward_auth</code> with <code>copy_headers Authorization</code> when Caddy is the only thing in front of it. A system without an edge can call <code>POST /v1/resolve</code> itself and verify the JWKS, with the service's issuer instead of two. A static site has no backend and therefore no flow: its requests go to an API, and that API's hook handles them.</p>
+
+    <div class="caveat">
+      <p><strong>What the service needs before any of this.</strong> The forward-auth route published on the console host and authenticated per caller, which the <code>X-Service-Key</code> header now does; and CORS behaviour on rejection. Both are already listed under production readiness, with one more reason each.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="part">Part two · deployment</div>
+    <h2>Today</h2>
+    <p>Two edges exist already. The Caddy proxies on the <code>proxyprod</code> and <code>proxytest</code> VMs terminate TLS for every public host and forward plain HTTP to the cluster's ingress-nginx load balancer. The parking control tower bypasses Caddy: its host points straight at the ingress and cert-manager issues the certificate in the cluster. Pomerium runs in the cluster as a second ingress class for internal tools, logging users in at Keycloak.</p>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 960 440" role="img" aria-label="Current deployment: clients reach Caddy proxy VMs, which forward over HTTP to ingress-nginx inside the Kubernetes cluster; the timeseries and content APIs in namespace core and the parking control tower in namespace parking each verify Keycloak tokens themselves against Keycloak on two Scaleway VMs; the content API also calls Keycloak UMA on every request; Pomerium fronts internal tools.">
+          <defs>
+            <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+          </defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.2" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12">
+            <rect x="400" y="20" width="540" height="330" rx="4" stroke-dasharray="5 4" opacity="0.6"/>
+            <text x="412" y="40" fill="currentColor" stroke="none" font-size="11" opacity="0.8">Kubernetes · EKS today, Scaleway Kapsule after the migration</text>
+            <rect x="600" y="60" width="320" height="150" rx="3" stroke-dasharray="2 3" opacity="0.5"/>
+            <text x="608" y="76" fill="currentColor" stroke="none" font-size="11" opacity="0.8">namespace core</text>
+            <rect x="600" y="225" width="320" height="60" rx="3" stroke-dasharray="2 3" opacity="0.5"/>
+            <text x="608" y="241" fill="currentColor" stroke="none" font-size="11" opacity="0.8">namespace parking</text>
+            <rect x="20" y="70" width="120" height="50" rx="3"/>
+            <text x="80" y="91" text-anchor="middle" fill="currentColor" stroke="none">clients</text>
+            <text x="80" y="107" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">browser, scripts, collectors</text>
+            <rect x="200" y="70" width="150" height="50" rx="3"/>
+            <text x="275" y="91" text-anchor="middle" fill="currentColor" stroke="none">Caddy proxy VMs</text>
+            <text x="275" y="107" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">TLS · ansible-caddy-sites</text>
+            <rect x="420" y="70" width="150" height="50" rx="3"/>
+            <text x="495" y="91" text-anchor="middle" fill="currentColor" stroke="none">ingress-nginx</text>
+            <text x="495" y="107" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">one LB, plain HTTP</text>
+            <rect x="420" y="235" width="150" height="50" rx="3"/>
+            <text x="495" y="256" text-anchor="middle" fill="currentColor" stroke="none">Pomerium</text>
+            <text x="495" y="272" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">own LB · internal tools</text>
+            <rect x="640" y="90" width="130" height="44" rx="3"/>
+            <text x="705" y="108" text-anchor="middle" fill="currentColor" stroke="none">ninja-api</text>
+            <text x="705" y="124" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">timeseries</text>
+            <rect x="640" y="150" width="130" height="44" rx="3"/>
+            <text x="705" y="168" text-anchor="middle" fill="currentColor" stroke="none">tourism-api</text>
+            <text x="705" y="184" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">content</text>
+            <rect x="640" y="240" width="130" height="40" rx="3"/>
+            <text x="705" y="258" text-anchor="middle" fill="currentColor" stroke="none">parking control tower</text>
+            <text x="705" y="273" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">TLS in cluster</text>
+            <rect x="800" y="110" width="110" height="40" rx="3" opacity="0.7"/>
+            <text x="855" y="128" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.8">raw-data-bridge</text>
+            <text x="855" y="143" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.7">prometheus, …</text>
+            <rect x="200" y="370" width="150" height="50" rx="3"/>
+            <text x="275" y="391" text-anchor="middle" fill="currentColor" stroke="none">Keycloak</text>
+            <text x="275" y="407" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">2 Scaleway VMs + LB</text>
+            <line x1="140" y1="95" x2="200" y2="95" marker-end="url(#a1)"/>
+            <text x="170" y="88" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">https</text>
+            <line x1="350" y1="95" x2="420" y2="95" marker-end="url(#a1)"/>
+            <text x="385" y="88" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">http</text>
+            <line x1="570" y1="95" x2="640" y2="112" marker-end="url(#a1)"/>
+            <line x1="570" y1="100" x2="640" y2="172" marker-end="url(#a1)"/>
+            <path d="M80 120 L80 300 L495 300 L495 120" marker-end="url(#a1)"/>
+            <text x="300" y="315" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">parking host · straight to the ingress, no Caddy</text>
+            <line x1="570" y1="110" x2="640" y2="260" marker-end="url(#a1)"/>
+            <path d="M640 120 L360 120 L300 370" stroke-dasharray="4 3" marker-end="url(#a1)"/>
+            <path d="M640 180 L380 180 L310 370" stroke-dasharray="4 3" marker-end="url(#a1)"/>
+            <path d="M640 265 L400 265 L320 370" stroke-dasharray="4 3" marker-end="url(#a1)"/>
+            <text x="190" y="340" fill="currentColor" stroke="none" font-size="11">each API: JWKS of Keycloak, verifies tokens itself</text>
+            <text x="190" y="355" fill="currentColor" stroke="none" font-size="11">content: UMA ticket call on every request</text>
+            <path d="M420 260 L380 260 L330 370" stroke-dasharray="4 3" marker-end="url(#a1)" opacity="0.6"/>
+            <line x1="570" y1="260" x2="800" y2="140" marker-end="url(#a1)" opacity="0.6"/>
+            <path d="M140 110 L160 110 L160 395 L200 395" marker-end="url(#a1)"/>
+            <text x="125" y="400" text-anchor="end" fill="currentColor" stroke="none" font-size="11">login, token</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Current shape. Each API verifies Keycloak tokens on its own. The content API additionally asks Keycloak for UMA permissions on every request. Nothing sits between the ingress and the APIs.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Target, minimal</h2>
+    <p>The hook goes in ingress-nginx, not in Caddy. nginx's <code>auth_request</code> is a stock ingress-nginx annotation, it runs inside the cluster where the identity service lives, it covers the parking host that never passes through Caddy, and it survives the Scaleway migration unchanged because the Caddy-to-ingress shape is being reproduced there. Caddy keeps doing TLS and nothing else.</p>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 960 470" role="img" aria-label="Target deployment: ingress-nginx calls the identity service with auth_request on every API request; the service re-reads the user from Keycloak's admin API and stores tokens in a Scaleway Postgres; it answers with its own JWT which nginx forwards to the API; the three APIs verify only the service's JWKS; network policies confine the APIs to traffic from the ingress; Caddy is unchanged.">
+          <defs>
+            <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+            <marker id="a2n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker>
+          </defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.2" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12">
+            <rect x="400" y="20" width="540" height="360" rx="4" stroke-dasharray="5 4" opacity="0.6"/>
+            <text x="412" y="40" fill="currentColor" stroke="none" font-size="11" opacity="0.8">Kubernetes</text>
+            <rect x="620" y="60" width="300" height="250" rx="3" stroke="var(--accent)" stroke-dasharray="2 3"/>
+            <text x="628" y="76" fill="var(--accent)" stroke="none" font-size="11">NetworkPolicy: ingress-nginx only</text>
+            <rect x="20" y="70" width="120" height="50" rx="3"/>
+            <text x="80" y="91" text-anchor="middle" fill="currentColor" stroke="none">clients</text>
+            <text x="80" y="107" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">any credential or none</text>
+            <rect x="200" y="70" width="150" height="50" rx="3"/>
+            <text x="275" y="91" text-anchor="middle" fill="currentColor" stroke="none">Caddy proxy VMs</text>
+            <text x="275" y="107" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">unchanged (+1 host)</text>
+            <rect x="420" y="70" width="150" height="50" rx="3"/>
+            <text x="495" y="91" text-anchor="middle" fill="currentColor" stroke="none">ingress-nginx</text>
+            <text x="495" y="107" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">auth_request per Ingress</text>
+            <rect x="420" y="210" width="150" height="60" rx="3" stroke="var(--accent)" stroke-width="1.6" fill="var(--accent-soft)"/>
+            <text x="495" y="233" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">odh-iam</text>
+            <text x="495" y="249" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">2+ replicas · namespace core</text>
+            <text x="495" y="263" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">forward-auth, console, JWKS</text>
+            <rect x="660" y="100" width="130" height="44" rx="3"/>
+            <text x="725" y="118" text-anchor="middle" fill="currentColor" stroke="none">ninja-api</text>
+            <text x="725" y="134" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">issuer = odh-iam</text>
+            <rect x="660" y="165" width="130" height="44" rx="3"/>
+            <text x="725" y="183" text-anchor="middle" fill="currentColor" stroke="none">tourism-api</text>
+            <text x="725" y="199" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">reads odh_permissions</text>
+            <rect x="660" y="230" width="130" height="44" rx="3"/>
+            <text x="725" y="248" text-anchor="middle" fill="currentColor" stroke="none">parking control tower</text>
+            <text x="725" y="264" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">issuer = odh-iam</text>
+            <rect x="200" y="400" width="150" height="50" rx="3"/>
+            <text x="275" y="421" text-anchor="middle" fill="currentColor" stroke="none">Keycloak</text>
+            <text x="275" y="437" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">unchanged · +2 clients</text>
+            <rect x="420" y="400" width="150" height="50" rx="3" stroke="var(--accent)"/>
+            <text x="495" y="421" text-anchor="middle" fill="currentColor" stroke="none">Postgres (Scaleway RDB)</text>
+            <text x="495" y="437" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">tokens, user data</text>
+            <line x1="140" y1="95" x2="200" y2="95" marker-end="url(#a2)"/>
+            <line x1="350" y1="95" x2="420" y2="95" marker-end="url(#a2)"/>
+            <path d="M80 120 L80 330 L495 330 L495 120" marker-end="url(#a2)" opacity="0.7"/>
+            <text x="300" y="345" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">parking host, unchanged</text>
+            <path d="M480 120 L480 210" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#a2n)"/>
+            <path d="M510 210 L510 120" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#a2n)"/>
+            <text x="525" y="150" fill="var(--accent)" stroke="none" font-size="11">1 · auth_request</text>
+            <text x="525" y="164" fill="var(--accent)" stroke="none" font-size="11">with client's headers</text>
+            <text x="525" y="186" fill="var(--accent)" stroke="none" font-size="11">2 · 200 + Authorization:</text>
+            <text x="525" y="200" fill="var(--accent)" stroke="none" font-size="11">odh-iam JWT, or 401</text>
+            <line x1="570" y1="90" x2="660" y2="118" marker-end="url(#a2)"/>
+            <line x1="570" y1="100" x2="660" y2="185" marker-end="url(#a2)"/>
+            <line x1="570" y1="110" x2="660" y2="250" marker-end="url(#a2)"/>
+            <text x="600" y="78" fill="currentColor" stroke="none" font-size="11">3 · the odh-iam JWT only</text>
+            <path d="M660 290 L495 290 L495 270" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+            <text x="660" y="300" fill="currentColor" stroke="none" font-size="11">JWKS of odh-iam, 60 s tokens</text>
+            <path d="M440 270 L300 400" stroke="var(--accent)" marker-end="url(#a2n)"/>
+            <text x="330" y="372" text-anchor="end" fill="var(--accent)" stroke="none" font-size="11">admin API, read-only</text>
+            <text x="330" y="386" text-anchor="end" fill="var(--accent)" stroke="none" font-size="11">users + roles, 15 s cache</text>
+            <line x1="495" y1="270" x2="495" y2="400" stroke="var(--accent)" marker-end="url(#a2n)"/>
+            <path d="M140 110 L160 110 L160 425 L200 425" marker-end="url(#a2)"/>
+            <text x="125" y="430" text-anchor="end" fill="currentColor" stroke="none" font-size="11">login, token</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Minimal target. Green is new. Keycloak is reached only by the identity service and by clients logging in. Caddy, ingress-nginx and the per-repo deploy pipelines stay as they are.</figcaption>
+    </figure>
+
+    <h3>Why not the other two edges</h3>
+    <ul>
+      <li><strong>Caddy.</strong> It sits on VMs outside the cluster, so every auth call would leave the cluster and come back. Parking does not pass through it. The <code>ansible-caddy-sites</code> role has no <code>forward_auth</code> option, so each API would need a hand-written <code>.caddy</code> file like <code>mobility.api.opendatahub.com.caddy</code>.</li>
+      <li><strong>Pomerium.</strong> Built for browser login to internal tools and already doing that job. It does not understand API tokens, it has its own load balancer, and anonymous public routes have to be explicitly opened. It would still need the identity service behind it.</li>
+      <li><strong>Ory Oathkeeper.</strong> Only adds a hop here: ingress-nginx already speaks <code>auth_request</code>, which is what Oathkeeper's decision API would plug into.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Proposed: the same edge, with the clutter removed</h2>
+    <p>The minimal target changes nothing it does not have to. Once the hook exists, three more moves make the picture simpler than today. Each is separable and can be skipped.</p>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 960 480" role="img" aria-label="Proposed deployment: API hosts resolve straight to the ingress-nginx load balancer with TLS issued in the cluster; Caddy keeps only legacy docker hosts and static sites; the identity service in its own namespace is the single auth_request hook for public APIs and for internal tools, replacing Pomerium; Keycloak keeps its public login host but its admin surface is reachable only from the cluster.">
+          <defs>
+            <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+            <marker id="a3n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker>
+          </defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.2" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12">
+            <rect x="400" y="20" width="540" height="370" rx="4" stroke-dasharray="5 4" opacity="0.6"/>
+            <text x="412" y="40" fill="currentColor" stroke="none" font-size="11" opacity="0.8">Kubernetes · one ingress class, one load balancer</text>
+            <rect x="620" y="60" width="300" height="190" rx="3" stroke="var(--accent)" stroke-dasharray="2 3"/>
+            <text x="628" y="76" fill="var(--accent)" stroke="none" font-size="11">public APIs · NetworkPolicy: ingress only</text>
+            <rect x="620" y="265" width="300" height="110" rx="3" stroke="var(--accent)" stroke-dasharray="2 3"/>
+            <text x="628" y="281" fill="var(--accent)" stroke="none" font-size="11">internal tools · same hook, role required per host</text>
+            <rect x="20" y="70" width="120" height="50" rx="3"/>
+            <text x="80" y="91" text-anchor="middle" fill="currentColor" stroke="none">clients</text>
+            <text x="80" y="107" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">any credential or none</text>
+            <rect x="420" y="70" width="150" height="50" rx="3" stroke="var(--accent)"/>
+            <text x="495" y="91" text-anchor="middle" fill="currentColor" stroke="none">ingress-nginx</text>
+            <text x="495" y="107" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">TLS here · cert-manager DNS-01</text>
+            <rect x="420" y="210" width="150" height="60" rx="3" stroke="var(--accent)" stroke-width="1.6" fill="var(--accent-soft)"/>
+            <text x="495" y="233" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">odh-iam</text>
+            <text x="495" y="249" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">namespace iam · 2+ replicas</text>
+            <text x="495" y="263" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">account.opendatahub.com</text>
+            <rect x="420" y="310" width="150" height="40" rx="3" stroke-dasharray="3 3" opacity="0.4"/>
+            <line x1="420" y1="310" x2="570" y2="350" opacity="0.4"/>
+            <text x="495" y="334" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.5">Pomerium + its LB</text>
+            <rect x="660" y="90" width="130" height="40" rx="3"/>
+            <text x="725" y="114" text-anchor="middle" fill="currentColor" stroke="none">ninja-api</text>
+            <rect x="660" y="145" width="130" height="40" rx="3"/>
+            <text x="725" y="169" text-anchor="middle" fill="currentColor" stroke="none">tourism-api</text>
+            <rect x="660" y="200" width="130" height="40" rx="3"/>
+            <text x="725" y="224" text-anchor="middle" fill="currentColor" stroke="none">parking control tower</text>
+            <rect x="660" y="295" width="130" height="30" rx="3" opacity="0.8"/>
+            <text x="725" y="314" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">raw-data-bridge</text>
+            <rect x="660" y="335" width="130" height="30" rx="3" opacity="0.8"/>
+            <text x="725" y="354" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">prometheus, rabbitmq, tempo</text>
+            <rect x="200" y="300" width="150" height="50" rx="3" opacity="0.7"/>
+            <text x="275" y="321" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.8">Caddy proxy VMs</text>
+            <text x="275" y="337" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.7">legacy docker hosts, S3 sites, .bz.it redirects</text>
+            <rect x="200" y="410" width="150" height="50" rx="3"/>
+            <text x="275" y="431" text-anchor="middle" fill="currentColor" stroke="none">Keycloak</text>
+            <text x="275" y="447" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">login public · /admin from cluster only</text>
+            <rect x="420" y="410" width="150" height="50" rx="3" stroke="var(--accent)"/>
+            <text x="495" y="431" text-anchor="middle" fill="currentColor" stroke="none">Postgres (Scaleway RDB)</text>
+            <text x="495" y="447" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" opacity="0.8">iam database</text>
+            <line x1="140" y1="95" x2="420" y2="95" stroke="var(--accent)" marker-end="url(#a3n)"/>
+            <text x="280" y="88" text-anchor="middle" fill="var(--accent)" stroke="none" font-size="11">https · DNS of API and tool hosts points at the ingress LB</text>
+            <path d="M80 120 L80 325 L200 325" marker-end="url(#a3)" opacity="0.7"/>
+            <text x="90" y="300" fill="currentColor" stroke="none" font-size="11" opacity="0.8">everything else</text>
+            <path d="M480 120 L480 210" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#a3n)"/>
+            <path d="M510 210 L510 120" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#a3n)"/>
+            <text x="525" y="160" fill="var(--accent)" stroke="none" font-size="11">auth_request</text>
+            <text x="525" y="174" fill="var(--accent)" stroke="none" font-size="11">per Ingress</text>
+            <line x1="570" y1="88" x2="660" y2="108" marker-end="url(#a3)"/>
+            <line x1="570" y1="96" x2="660" y2="163" marker-end="url(#a3)"/>
+            <line x1="570" y1="104" x2="660" y2="218" marker-end="url(#a3)"/>
+            <path d="M560 120 L600 120 L600 310 L660 310" marker-end="url(#a3)" opacity="0.8"/>
+            <path d="M600 310 L600 350 L660 350" marker-end="url(#a3)" opacity="0.8"/>
+            <path d="M440 270 L300 410" stroke="var(--accent)" marker-end="url(#a3n)"/>
+            <text x="330" y="382" text-anchor="end" fill="var(--accent)" stroke="none" font-size="11">admin API, read-only</text>
+            <line x1="495" y1="270" x2="495" y2="410" stroke="var(--accent)" marker-end="url(#a3n)"/>
+            <path d="M140 110 L160 110 L160 435 L200 435" marker-end="url(#a3)"/>
+            <text x="125" y="440" text-anchor="end" fill="currentColor" stroke="none" font-size="11">login, token</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Proposed shape. API and tool hosts resolve to the ingress load balancer and get certificates from cert-manager, as the parking host already does. One hook serves public APIs and internal tools. Pomerium and its load balancer go. Caddy stays for what is not in the cluster.</figcaption>
+    </figure>
+
+    <h3>1 · TLS in the cluster for the API hosts</h3>
+    <p>Parking already proves the pattern: DNS-01 cluster issuer, certificate in the Ingress, DNS straight at the load balancer. The commented lines in <code>deploy/values/ninja-api/scaleway-test.yaml</code> are exactly this. Doing it for the other hosts takes the OOM-prone proxy VM out of the API path and removes one hop. What moves with it: the <code>/v2</code> prefix strip and the Swagger redirect in <code>mobility.api.opendatahub.com.caddy</code> become <code>rewrite-target</code> and <code>permanent-redirect</code> annotations, and API access logs come from ingress-nginx instead of Caddy's filebeat input. The Scaleway migration currently plans the opposite, so this is a decision to take there, not a detail.</p>
+
+    <h3>2 · One hook for internal tools, no Pomerium</h3>
+    <p>Pomerium exists to log a browser in at Keycloak and check a claim per host. The identity service resolves the same user and roles for every request already, so the per-host rule becomes a parameter of the hook (<code>require=CLUSTER:ADMIN</code>) and the internal tools move to the <code>nginx</code> ingress class. What the service lacks for this is a browser session: an OIDC redirect to Keycloak and a cookie, the part Pomerium and oauth2-proxy do. Until that exists Pomerium stays. Gone with it: a second ingress controller, a second load balancer and elastic IP, the <code>authenticate.internal</code> host, a Keycloak client and the flat <code>roles</code> mapper added for it.</p>
+
+    <h3>3 · Keycloak behind the service</h3>
+    <p>Keycloak keeps its public host, because browsers log in there and collectors fetch <code>client_credentials</code> tokens from it. Its admin console and admin REST API do not need to be public: a path rule on the Scaleway load balancer or a security group limits <code>/admin</code> and <code>/auth/admin</code> to the cluster and NOI addresses. The identity service is then the only thing that reads the realm.</p>
+
+    <h3>Hosts</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Host</th><th>Today</th><th>Proposed</th></tr></thead>
+        <tbody>
+          <tr><td><code>mobility.api</code>, <code>timeseries.api.opendatahub.com</code></td><td>Caddy, <code>/v2</code> stripped there, then ingress</td><td>DNS at the ingress LB, TLS by cert-manager, rewrite as annotation</td></tr>
+          <tr><td><code>tourism.api</code>, <code>content.api</code>, <code>tourism.opendatahub.com</code></td><td>Caddy, then ingress</td><td>DNS at the ingress LB, TLS by cert-manager</td></tr>
+          <tr><td><code>parking.control-tower.opendatahub.com</code></td><td>ingress directly</td><td>unchanged, the model for the rest</td></tr>
+          <tr><td><code>account.opendatahub.com</code></td><td>does not exist</td><td>identity console and JWKS; <code>iam.</code> works too, <code>account.</code> says what users do there</td></tr>
+          <tr><td><code>auth.opendatahub.com</code></td><td>Keycloak, everything public</td><td>same host; admin paths restricted</td></tr>
+          <tr><td><code>authenticate.internal.opendatahub.com</code></td><td>Pomerium login</td><td>removed</td></tr>
+          <tr><td><code>raw.internal.opendatahub.com</code>, prometheus, rabbitmq, tempo</td><td>Pomerium class, own LB</td><td>nginx class, same hook, role required</td></tr>
+          <tr><td><code>*.opendatahub.bz.it</code> aliases, S3 sites, docker hosts</td><td>Caddy</td><td>Caddy, unchanged</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>User data: on demand, never in the JWT</h2>
+    <p>The service stores what Keycloak cannot hold: settings, preferences, profile, one JSON object per namespace. None of it travels in the JWT. The JWT carries identity, roles, the principal kind, the token id and content's permissions, and nothing else, so it stays Keycloak-shaped and small. Whoever needs user data reads it when it needs it.</p>
+    <table>
+      <thead><tr><th>Who needs it</th><th>How it gets there</th></tr></thead>
+      <tbody>
+        <tr><td>A frontend: settings page, profile, theme</td><td><code>GET</code>/<code>PUT /v1/me/data/{namespace}</code> with the user's session. Read once, written when the user saves.</td></tr>
+        <tr><td>An API whose answer depends on a preference, for API-token requests too</td><td><code>GET /v1/users/{subject}/data/{namespace}</code> with its service key, the subject taken from the JWT, cached per subject for a few seconds. One in-cluster call, only from the endpoints that care.</td></tr>
+      </tbody>
+    </table>
+    <p>Why not hydrate the JWT, which the PoC did at first:</p>
+    <ul>
+      <li><strong>Most consumers are frontends.</strong> A settings page calls <code>/v1/me</code> directly; routing the same data through an API on every request to reach a settings page is the wrong direction.</li>
+      <li><strong>The JWT travels in a header.</strong> Content's permission list is already ~3 KB; preferences on top push against nginx's 8 KB header buffer, and every request pays for data most endpoints ignore.</li>
+      <li><strong>Coupling.</strong> Hydration put the user-data store on the path of every request to every API, and tied the token service and the user-data service together. On demand, the hook never touches user data, and the two halves are independent.</li>
+    </ul>
+    <div class="verdict">
+      <p><strong>Consequence for the service's shape.</strong> With hydration gone, the token half (tokens, resolve, forward-auth, the token endpoint, JWKS) and the user-data half (<code>/v1/me/data</code>, <code>/v1/users/…/data</code>) share only the Keycloak subject as a key and the same session check, which is a library call. They can stay one deployment or become two on organisational grounds alone: a split costs a second chart, secrets, database and rollout, and buys separate ownership and release cadence. The request path is unaffected either way.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Changes by repository</h2>
+    <p>For the minimal target. Every item is config or manifests unless marked <span class="pill code">code</span>. Each API repository deploys itself with <code>helm-deploy</code> from its own workflow, so the API-side changes are values files in those repositories, not in infrastructure-v2.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Repository</th><th>Change</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="6"><code>infrastructure-v2</code></td><td>Helm chart for the identity service: Deployment (2+ replicas), Service, Ingress for the console host, Secret for DB URL, Keycloak client secret and signing key, ServiceMonitor.</td><td><code>infrastructure/helm/odh-iam/</code></td></tr>
+          <tr><td>Release in the apps tier, after <code>cluster-secrets</code>.</td><td><code>deploy/helmfile.yaml.gotmpl</code></td></tr>
+          <tr><td>Secrets rendered by <code>cluster-secrets</code>: database URL, Keycloak client secret, signing key, service keys.</td><td><code>deploy/secrets/{test,prod}.yaml</code> (sops)</td></tr>
+          <tr><td>NetworkPolicy: the API Deployments accept traffic only from the <code>ingress-nginx</code> namespace, bdp-core and ninja-api also from the collector namespace; the service's forward-auth and token paths likewise. Only <code>nginx-fileserver</code> has a policy today, so this is a new pattern for the cluster.</td><td>new templates in each API chart, or one policy chart</td></tr>
+          <tr><td><code>oauthCollector.tokenUri</code> moved from Keycloak's token endpoint to the service's in-cluster one. This is the whole change for the 49 deployments reading the <code>oauth-collector</code> secret.</td><td><code>deploy/environments/{test,prod}.yaml</code></td></tr>
+          <tr><td>Nothing in ingress-nginx itself. <code>auth_request</code> is stock.</td><td></td></tr>
+          <tr><td rowspan="3"><code>infrastructure</code></td><td>Postgres: one <code>iam</code> database per environment, same pattern as <code>tourism.tf</code>.</td><td><code>terraform/scaleway/opendatahub-{test,prod}/db/iam.tf</code></td></tr>
+          <tr><td>Caddy: one <code>domain_name</code> entry for the console host, forwarding to the ingress like <code>tourism.api.opendatahub.com</code>. The test cluster's host is created by external-dns as a CNAME to the proxy.</td><td><code>ansible/playbooks/proxy-02.yml</code>, <code>proxy-opendatahub-test.yml</code></td></tr>
+          <tr><td>Keycloak realm <code>noi</code>, test and prod: confidential client <code>odh-iam</code> with a service account holding <code>view-users</code>, <code>view-clients</code>, <code>view-authorization</code>; public client <code>odh-iam-ui</code> with PKCE and an audience mapper. Wherever the realm is managed (authentication-server repo or admin console).</td><td>Keycloak</td></tr>
+          <tr><td rowspan="2"><code>opendatahub-timeseries-api</code></td><td>Ingress annotations <code>auth-url</code> and <code>auth-response-headers: Authorization</code>; <code>KEYCLOAK_ISSUER_URI</code> set to the service's issuer. The override already exists in <code>application.properties</code>.</td><td><code>infrastructure/helm/{test,prod}.yaml</code></td></tr>
+          <tr><td>No code. An audience check can be added later as hardening.</td><td></td></tr>
+          <tr><td rowspan="2"><code>opendatahub-content-api</code></td><td>Same two annotations; <code>OauthServerConfig__Authority</code> cannot simply be repointed because the same setting also feeds the Swagger token URLs and the UMA call.</td><td><code>infrastructure/helm/{test,prod}.yaml</code></td></tr>
+          <tr><td><span class="pill code">code</span> Split "issuer to validate" from "Keycloak for login"; replace the per-request UMA ticket call in <code>AuthorizationMiddleware.cs</code> with reading <code>odh_permissions</code> from the token. This is the one real rewrite.</td><td><code>Startup.cs</code>, <code>Helper/Identity/</code></td></tr>
+          <tr><td rowspan="2"><code>opendatahub-parking-control-tower</code></td><td>Same two annotations in both values files.</td><td><code>infrastructure/helm/values.{test,prod}.yaml</code></td></tr>
+          <tr><td><span class="pill code">code</span> The issuer is built as <code>APP_AUTHURL + /realms/&lt;realm&gt;</code> in <code>auth.go</code>; add a direct issuer setting. Small. The <code>azp</code> check stays; it decides whether API tokens are accepted.</td><td><code>src/auth.go</code>, <code>src/config.go</code></td></tr>
+          <tr><td rowspan="2"><code>bdp-core</code></td><td>Same two annotations on the <code>mobility.share</code> Ingress; <code>KEYCLOAK_URL</code> split into a login URL and the issuer to validate.</td><td><code>infrastructure/helm/{test,prod}.yaml</code></td></tr>
+          <tr><td><span class="pill code">code</span> Issuer split from the login client registration; the <code>bdp://</code> UMA lookup replaced by permissions from the token, or by a table in the writer. Which policies exist decides the size.</td><td><code>writer/</code> security config, <code>AUTHZ.md</code></td></tr>
+          <tr><td><code>opendatahub-collectors</code></td><td>Nothing for the 49 on the shared secret. The 17 content transformers carry <code>ODH_CORE_TOKEN_URL</code> in their values files; they work unchanged through the hook and can move to the service's token endpoint at leisure.</td><td><code>transformers/*/infrastructure/helm/</code></td></tr>
+          <tr><td><code>odh-iam</code> (new)</td><td>Dockerfile and a deploy workflow on the <code>helm-deploy@v2</code> pattern the other apps use, or deploy from the helmfile. Production gaps listed in its README: key rotation, operator view, rate limits.</td><td>new repository</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The ingress hook, concretely</h3>
+    <pre><code>ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-url: "http://odh-iam.core.svc.cluster.local:4010/v1/forward-auth/timeseries"
+    nginx.ingress.kubernetes.io/auth-response-headers: "Authorization"</code></pre>
+    <p>nginx calls that URL once per request with the client's headers, and copies the <code>Authorization</code> header of the answer onto the request it forwards. The API never sees what the client sent.</p>
+    <div class="caveat">
+      <p><strong>Two things the dev stack gets away with that production cannot.</strong> The dev edge writes the service key into its nginx config. Helm values live in public repositories, so no key can go in an annotation; ingress-nginx's <code>auth-proxy-set-headers</code> annotation names a ConfigMap whose headers are added to the auth call, and that ConfigMap can be rendered by <code>cluster-secrets</code> from sops like the other secrets. Failing that, the route is confined by NetworkPolicy and identifies the target API from the forwarded host. And the cutover of an API is atomic: the annotation and the issuer setting must change in the same deploy, because with only one of them the API rejects every request. Rollback is reverting that one values file.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Effort</h2>
+    <p>Person-days for one engineer who knows the stack, test and prod included. The infrastructure part is small. The cost is in the service itself reaching production quality and in the content API.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Work</th><th></th><th>Days</th></tr></thead>
+        <tbody>
+          <tr><td>Helm chart, helmfile release, sops secrets, deploy workflow</td><td><span class="pill infra">infra</span></td><td class="num">2–3</td></tr>
+          <tr><td>Postgres database in Terraform, test and prod</td><td><span class="pill infra">infra</span></td><td class="num">1</td></tr>
+          <tr><td>Keycloak clients in both realms, Caddy host, DNS</td><td><span class="pill infra">infra</span></td><td class="num">1</td></tr>
+          <tr><td>NetworkPolicies for the four APIs and the service</td><td><span class="pill infra">infra</span></td><td class="num">1</td></tr>
+          <tr><td>Ingress annotations and issuer settings, 4 APIs × 2 environments; <code>oauthCollector.tokenUri</code></td><td><span class="pill infra">infra</span></td><td class="num">1–2</td></tr>
+          <tr><td>Timeseries: none</td><td></td><td class="num">0</td></tr>
+          <tr><td>Parking: issuer setting</td><td><span class="pill code">code</span></td><td class="num">0.5</td></tr>
+          <tr><td>bdp-core: issuer split, <code>bdp://</code> permissions from the token or a table</td><td><span class="pill code">code</span></td><td class="num">2–4</td></tr>
+          <tr><td>Service: Keycloak-shaped claim set with <code>azp</code> passed through, <code>client_credentials</code> token endpoint, service-JWT pass-through at the hook</td><td><span class="pill code">code</span></td><td class="num">2–3</td></tr>
+          <tr><td>Content: split authority setting, replace UMA middleware, retest the permission matrix</td><td><span class="pill code">code</span></td><td class="num">3–5</td></tr>
+          <tr><td>Service to production grade: key rotation, operator token list, rate limits, load test of the Keycloak admin API path</td><td><span class="pill code">code</span></td><td class="num">5–10</td></tr>
+          <tr><td>Rollout on test, then prod one API at a time, observation</td><td><span class="pill infra">infra</span></td><td class="num">2–3</td></tr>
+          <tr class="total"><td>Total, minimal target</td><td></td><td class="num">21–33</td></tr>
+          <tr><td>of which edge and deployment only</td><td><span class="pill infra">infra</span></td><td class="num">8–11</td></tr>
+          <tr><td>Cleanup 1: TLS in the cluster for five API hosts, DNS, rewrite annotations, log path</td><td><span class="pill infra">infra</span></td><td class="num">2–3</td></tr>
+          <tr><td>Cleanup 2: browser session in the service, per-host role rule, four internal hosts moved, Pomerium removed</td><td><span class="pill code">code</span></td><td class="num">4–6</td></tr>
+          <tr><td>Cleanup 3: Keycloak admin paths restricted at the load balancer</td><td><span class="pill infra">infra</span></td><td class="num">0.5–1</td></tr>
+          <tr class="total"><td>Total with all three cleanups</td><td></td><td class="num">28–43</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="twocol">
+      <div>
+        <h3>What the edge buys</h3>
+        <ul>
+          <li>APIs know one issuer. Integration is an issuer URL.</li>
+          <li>API tokens, sessions and machine clients arrive at the API in one shape.</li>
+          <li>Keycloak is reachable from the cluster only by the identity service.</li>
+          <li>A role change in Keycloak reaches open sessions in seconds.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What it costs at runtime</h3>
+        <ul>
+          <li>One in-cluster round trip on every request, anonymous ones included. Measured 3 ms warm, 95 ms cold for content.</li>
+          <li>Keycloak's admin API is read for every active user every 15 s per replica.</li>
+          <li>The service and its database are on the path of every request to the four APIs, and of every token renewal in the cluster.</li>
+          <li>A 3 KB <code>Authorization</code> header for content users with many permissions.</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <h3>Open</h3>
+    <ul>
+      <li>Content's permission source: served by the service, or a role table inside content with UMA dropped. The same for bdp-core's <code>bdp://</code> resources, after an inventory of its policies.</li>
+      <li>Whether anonymous traffic bypasses the hook. Timeseries is mostly anonymous; a rule on the Ingress can skip the call when no <code>Authorization</code> header is present, if the API keeps its own anonymous default.</li>
+      <li>Whether the Scaleway migration keeps Caddy in front of the API hosts (cleanup 1).</li>
+      <li>When discovery's own nginx gets the hook. Every API joins; none stays on Keycloak directly.</li>
+      <li>Key rotation for the issuer: publish two keys in JWKS, sign with the newer.</li>
+    </ul>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>
+  const dark = document.documentElement.dataset.theme === "dark"
+    || (!document.documentElement.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
+  mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "neutral" });
+  mermaid.run();
+</script>
+</body>
+</html>

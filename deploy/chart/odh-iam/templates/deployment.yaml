@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels: { app: {{ .Release.Name }} }
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels: { app: {{ .Release.Name }} }
+  template:
+    metadata:
+      labels: { app: {{ .Release.Name }} }
+      annotations:
+        checksum/config: {{ .Values.config | toJson | sha256sum }}
+    spec:
+      containers:
+        - name: iam
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 4010
+          env:
+            - name: IAM_CONFIG
+              value: /etc/iam/config.json
+            - name: IAM_SIGNING_KEY_FILE
+              value: /keys/signing-key.pem
+            {{- range $k, $v := .Values.env }}
+            - name: {{ $k }}
+              value: {{ $v | quote }}
+            {{- end }}
+            - name: IAM_DATABASE_URL
+              valueFrom: { secretKeyRef: { name: {{ .Values.secretName }}, key: databaseUrl } }
+            - name: IAM_KEYCLOAK_CLIENT_SECRET
+              valueFrom: { secretKeyRef: { name: {{ .Values.secretName }}, key: keycloakClientSecret } }
+            - name: IAM_SERVICE_KEY_CONTENT
+              valueFrom: { secretKeyRef: { name: {{ .Values.secretName }}, key: serviceKeyContent } }
+          volumeMounts:
+            - { name: config, mountPath: /etc/iam, readOnly: true }
+            - { name: signing-key, mountPath: /keys, readOnly: true }
+          readinessProbe:
+            httpGet: { path: /healthz, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: http }
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          resources: {{ .Values.resources | toJson }}
+      volumes:
+        - name: config
+          configMap: { name: {{ .Release.Name }}-config }
+        - name: signing-key
+          secret: { secretName: {{ .Values.signingKeySecretName }} }
